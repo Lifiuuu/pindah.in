@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/Navbar";
-import BottomNav from "@/components/BottomNav";
 import DemoRoleSwitcher from "@/components/DemoRoleSwitcher";
 import "./globals.css";
 
@@ -33,10 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="h-full antialiased scroll-smooth">
-      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900 pb-24 md:pb-8 font-sans selection:bg-brand-600 selection:text-white">
+      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900 pb-10 md:pb-8 font-sans selection:bg-brand-600 selection:text-white">
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
-        <BottomNav />
         <DemoRoleSwitcher />
       </body>
     </html>

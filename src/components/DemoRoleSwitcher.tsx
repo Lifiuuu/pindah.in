@@ -42,7 +42,7 @@ export default function DemoRoleSwitcher() {
   ];
 
   return (
-    <div className="fixed z-50 bottom-20 md:bottom-6 right-3 sm:right-6 select-none font-sans print:hidden">
+    <div className="fixed z-50 bottom-4 md:bottom-6 right-3 sm:right-6 select-none font-sans print:hidden">
       {isExpanded ? (
         <div className="flex items-center gap-1.5 bg-surface-900/95 text-white backdrop-blur-md border border-surface-700/80 shadow-2xl rounded-2xl p-1.5 ring-1 ring-black/20 animate-in fade-in slide-in-from-bottom-2 duration-200">
           {/* Header indicator */}
@@ -99,3 +99,4 @@ export default function DemoRoleSwitcher() {
     </div>
   );
 }
+
