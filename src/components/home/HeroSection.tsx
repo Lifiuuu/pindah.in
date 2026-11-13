@@ -24,7 +24,7 @@ export default function HeroSection() {
         {/* Main Headline with Balanced Mobile/Tablet Typography */}
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-surface-950 leading-[1.25] sm:leading-[1.18]">
           Pindah Kos Bebas Drama, <br />
-          <span className="text-brand-600 underline decoration-accent-400 decoration-wavy decoration-2 underline-offset-8">
+          <span className="text-brand-600">
             Tanpa Ribet Nawar
           </span>{" "}
           & Ada Helper Sampai Kamar
