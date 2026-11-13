@@ -3,11 +3,49 @@
 > **Platform Logistik Pindahan Kos Mahasiswa Terintegrasi Surabaya**  
 > Proyek Akhir Mata Kuliah Kewirausahaan Bidang TI (FVK25612002) · Program Studi D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga.
 
+[![Pindah.in CI Pipeline](https://github.com/Lifiuuu/pindah.in/actions/workflows/ci.yml/badge.svg)](https://github.com/Lifiuuu/pindah.in/actions)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 ![Next.js 15](https://img.shields.io/badge/Next.js-15.1-black?logo=next.js)
 ![React 19](https://img.shields.io/badge/React-19.0-blue?logo=react)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-teal?logo=tailwind-css)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript)
+
+---
+
+## Arsitektur CI/CD (Continuous Integration & Continuous Deployment)
+
+Meskipun berstatus prototipe/mockup untuk pengujian pengguna, proyek ini menerapkan standar **CI/CD Industri Modern**:
+
+```
+[ Developer / Mahasiswa ]
+          │
+          ▼  (git push origin main)
+┌────────────────────────────────────────┐
+│  GitHub Repository (Lifiuuu/pindah.in)  │
+└───────────────────┬────────────────────┘
+                    │
+         ┌──────────┴──────────┐
+         ▼                     ▼
+┌──────────────────┐  ┌─────────────────────────┐
+│ Continuous       │  │ Continuous Deployment   │
+│ Integration (CI) │  │ (CD) via Vercel Engine  │
+├──────────────────┤  ├─────────────────────────┤
+│ • GitHub Actions │  │ • Auto Webhook Trigger  │
+│ • Node.js 20 Env │  │ • Next.js App Router    │
+│ • TypeScript     │  │ • Edge Optimization     │
+│   Typecheck      │  │ • Instant Production    │
+│ • Production     │  │   URL                   │
+│   Build Check    │  │ • Preview Deployment    │
+└──────────────────┘  │   for Pull Requests     │
+                      └─────────────────────────┘
+```
+
+1. **Continuous Integration (CI)** via **GitHub Actions** (`.github/workflows/ci.yml`):
+   - Dijalankan otomatis setiap ada `push` atau `pull request` ke branch `main`.
+   - Menguji keabsahan tipe TypeScript secara ketat (`npm run typecheck`) dan menguji build produksi Next.js (`npm run build`).
+2. **Continuous Deployment (CD)** via **Vercel**:
+   - Vercel terhubung langsung dengan repositori GitHub `Lifiuuu/pindah.in`.
+   - Setiap commit yang lolos pada branch `main` langsung di-build dan di-deploy ke jaringan CDN global Vercel tanpa downtime.
 
 ---
 
@@ -22,21 +60,20 @@ Platform **Pindah.in** hadir sebagai solusi berbasis teknologi web mobile-first 
 
 ---
 
-## Fitur Unggulan Prototipe
+## Pembagian Role & Endpoint
 
-1. **Kalkulator Tarif Otomatis & Transparan** (`/` & `/pesan`):
-   - Perhitungan harga instan berbasis jarak tempuh, tipe kendaraan, dan kompensasi tangga lantai kos tanpa biaya siluman.
-2. **Pilihan Armada Lengkap**:
-   - Pikap Bak Terbuka (Standar Populer), Pikap Box Aluminium (Anti Hujan), dan Motor Kargo Roda Tiga (Gang Sempit).
-   - Paket sudah mencakup 1 orang Helper Door-to-Door (opsi tambah Helper ke-2).
-3. **Inventaris Checklist Barang Kos Mahasiswa**:
-   - Menghitung persentase keterisian kapasitas muatan armada secara langsung.
-4. **Fitur Tagihan Penyandang Dana (Payer Flow)** (`/pesan/konfirmasi` & `/invoice/[id]`):
-   - Menghasilkan tautan resmi yang dapat dibagikan ke WhatsApp orang tua selaku penyandang dana, dilengkapi QRIS instan dan rincian transparan.
-5. **Simulasi Live Tracking Real-Time** (`/tracking/[id]`):
-   - Dilengkapi **Demo Simulation Controller** (tombol maju cepat status) untuk kebutuhan demonstrasi 3–4 menit di hadapan dosen penguji UAS.
-6. **Preview Portal Mitra (Ekosistem 80:20)** (`/mitra-preview`):
-   - Memvalidasi pembagian hak mitra 80% (Rp 120.000) vs margin platform 20% (Rp 30.000) dari standar transaksi Rp 150.000 (sesuai Bab IV BMC).
+1. **Role 1: Pelanggan (Mahasiswa)**:
+   - `/`: Beranda, kalkulator estimasi cepat, 4 pilar solusi, showcase armada, testimoni UNAIR.
+   - `/pesan`: Wizard pemesanan 4 langkah (rute, armada pikap + helper, checklist inventaris barang kos, review tarif).
+   - `/pesan/konfirmasi`: Barcode QRIS resmi di layar, tombol salin detail pesanan & kirim ke WhatsApp orang tua jika dibantu bayar, dan tombol simulasi pelunasan langsung.
+   - `/tracking/[id]`: Live tracking armada pikap dengan peta rute Surabaya (Kampus A, B, C UNAIR), kontak driver & helper, dan tombol controller simulasi demo 3 menit.
+   - `/riwayat`: Daftar riwayat pesanan dengan filter status.
+
+2. **Role 2: Mitra Kerja (Driver & Helper)**:
+   - `/mitra`: Portal driver pikap & helper dengan saklar online/offline, penerimaan pesanan masuk sekitar kampus UNAIR, eksekusi tahapan jemput-angkut-antar, dan dompet bagi hasil 80% (Rp 120.000 / trip).
+
+3. **Role 3: Admin Operasional & Bisnis**:
+   - `/admin`: Dashboard eksekutif pemantauan target BEP 67 transaksi/bulan (Bab IV Business Model Canvas), margin komisi 20% platform (Rp 30.000/order), monitoring sebaran armada Surabaya, dan verifikasi mitra.
 
 ---
 
@@ -51,7 +88,11 @@ cd pindah.in
 # 2. Pasang dependensi
 npm install
 
-# 3. Jalankan server pengembangan
+# 3. Uji validitas tipe dan build
+npm run typecheck
+npm run build
+
+# 4. Jalankan server pengembangan
 npm run dev
 ```
 
@@ -59,31 +100,33 @@ Buka peramban di `http://localhost:3000`.
 
 ---
 
-## Panduan Deploy ke Vercel
+## Panduan Menghubungkan ke Vercel (CI/CD Setup)
 
-Aplikasi ini telah dikonfigurasi dan diuji agar siap di-deploy langsung ke **Vercel**:
+Aplikasi ini telah dikonfigurasi dengan `vercel.json` dan siap di-deploy langsung:
 
-### Opsi 1: Deploy via Vercel Dashboard (Rekomendasi)
-1. Push repositori ini ke GitHub (`git push origin main`).
-2. Masuk ke dashboard [Vercel](https://vercel.com).
-3. Klik **Add New Project** dan pilih repositori `pindah.in`.
-4. Framework Preset akan otomatis terdeteksi sebagai **Next.js**.
-5. Klik **Deploy**. URL publik langsung aktif dalam kurun waktu 1 menit!
-
-### Opsi 2: Deploy via Vercel CLI
-```bash
-npm install -g vercel
-vercel
-```
+1. Pastikan seluruh commit telah ter-push ke GitHub:
+   ```bash
+   git push origin main
+   ```
+2. Buka [Vercel Dashboard](https://vercel.com/new).
+3. Hubungkan akun GitHub milikmu dan pilih repositori **`pindah.in`** (atau `Lifiuuu/pindah.in`).
+4. Vercel akan otomatis mendeteksi:
+   - **Framework Preset**: `Next.js`
+   - **Build Command**: `next build` (atau `npm run build`)
+   - **Output Directory**: `.next`
+5. Klik **Deploy**.
+6. Selesai! Setiap kali kamu melakukan `git commit` dan `git push origin main`, Vercel akan **otomatis melakukan redeploy secara Continuous Deployment (CD)** dalam hitungan detik.
 
 ---
 
-## Tim Pengembang (Kelompok 4)
-- **Putri Atika Mahardika Dewi** (434241080)
-- **Faatin Sausan Firdaus** (434241090)
-- **Maulidina Naurah Salsabila** (434241098)
-- **Alifia Putri Marizka** (434241103)
-- **Reta Hadiana Unggula** (434241107)
+## Pengembang & Tim Proyek (Kelompok 4)
 
-*Program Studi D4 Teknik Informatika · Fakultas Vokasi · Universitas Airlangga 2026*
-
+- **Mata Kuliah**: Kewirausahaan Bidang TI (FVK25612002)
+- **Program Studi**: D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga
+- **Dosen Pengampu**: Nambi Sembilu, S.Kom., M.Kom.
+- **Anggota Kelompok**:
+  1. Putri Atika Mahardika
+  2. Faatin Sausan Firdaus
+  3. Maulidina Naurah
+  4. Alifia Putri
+  5. Reta Hadiana
