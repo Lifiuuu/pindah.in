@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   Truck,
   MapPin,
@@ -395,16 +394,6 @@ export default function MitraPortalPage() {
             </div>
           </div>
         )}
-
-        {/* Footer Navigation Switcher */}
-        <div className="text-center pt-6 pb-12">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-surface-500 hover:text-brand-800 transition"
-          >
-            ← Kembali ke Tampilan Pelanggan (Mahasiswa Kos)
-          </Link>
-        </div>
       </div>
     </div>
   );

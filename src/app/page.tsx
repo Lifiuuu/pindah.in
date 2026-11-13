@@ -5,7 +5,7 @@ import FleetSection from "@/components/home/FleetSection";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import FAQSection from "@/components/home/FAQSection";
 import Link from "next/link";
-import { Truck, ShieldCheck, HardHat, BarChart3 } from "lucide-react";
+import { Truck } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -17,18 +17,21 @@ export default function HomePage() {
       <TestimonialSection />
       <FAQSection />
 
-      {/* Structured Multi-Role Footer */}
+      {/* Structured Customer Footer */}
       <footer className="bg-surface-900 text-surface-400 text-xs border-t border-surface-800 pt-12 pb-10 px-4 sm:px-6">
         <div className="mx-auto max-w-5xl space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-surface-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-surface-800">
             {/* Col 1: Brand Info */}
-            <div className="space-y-3 md:col-span-1">
+            <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-600 text-white">
                   <Truck className="h-4 w-4" />
                 </div>
                 <span className="text-base font-extrabold text-white">
                   Pindah<span className="text-accent-400">.in</span>
+                </span>
+                <span className="rounded-full bg-surface-800 px-2 py-0.5 text-[10px] font-semibold text-accent-300 border border-surface-700">
+                  Surabaya
                 </span>
               </div>
               <p className="text-xs text-surface-400 leading-relaxed">
@@ -39,9 +42,9 @@ export default function HomePage() {
             {/* Col 2: Pelanggan (Mahasiswa) */}
             <div className="space-y-2.5">
               <strong className="text-surface-200 font-bold block uppercase tracking-wider text-[11px]">
-                Layanan Mahasiswa
+                Navigasi Layanan
               </strong>
-              <ul className="space-y-1.5 text-surface-400">
+              <ul className="space-y-2 text-surface-400">
                 <li>
                   <Link href="/pesan" className="hover:text-white transition">Pesan Pindahan Kos</Link>
                 </li>
@@ -57,46 +60,19 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Col 3: Portal Mitra (Driver & Helper) */}
+            {/* Col 3: Cakupan Wilayah Operasional */}
             <div className="space-y-2.5">
-              <strong className="text-surface-200 font-bold block uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-                <HardHat className="h-3.5 w-3.5 text-accent-400" />
-                Portal Mitra Kerja
+              <strong className="text-surface-200 font-bold block uppercase tracking-wider text-[11px]">
+                Cakupan Operasional
               </strong>
-              <ul className="space-y-1.5 text-surface-400">
-                <li>
-                  <Link href="/mitra" className="text-accent-300 font-semibold hover:text-white transition">
-                    Aplikasi Driver & Helper →
-                  </Link>
-                </li>
-                <li>
-                  <span className="text-surface-400 text-[11px] block">Bagi Hasil 80% (Driver Rp 85rb + Helper Rp 35rb)</span>
-                </li>
-                <li>
-                  <span className="text-surface-400 text-[11px] block">Jangkauan: Seluruh Kawasan Kampus & Kos Surabaya</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Col 4: Pengelola & Pusat Operasional */}
-            <div className="space-y-2.5">
-              <strong className="text-surface-200 font-bold block uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-                <BarChart3 className="h-3.5 w-3.5 text-accent-400" />
-                Pusat Operasional
-              </strong>
-              <ul className="space-y-1.5 text-surface-400">
-                <li>
-                  <Link href="/admin" className="text-accent-300 font-semibold hover:text-white transition">
-                    Dashboard Operasional →
-                  </Link>
-                </li>
-                <li>
-                  <span className="text-surface-400 text-[11px] block">Monitoring Unit Economics (Asset-Light)</span>
-                </li>
-                <li>
-                  <span className="text-surface-400 text-[11px] block">Operasional Wilayah Surabaya</span>
-                </li>
-              </ul>
+              <p className="text-surface-400 text-xs leading-relaxed">
+                Melayani seluruh koridor kampus & kos mahasiswa Surabaya (UNAIR Kampus A/B/C, ITS Sukolilo, UNESA Ketintang/Lidah Wetan, UPN Veteran Jatim, dan sekitarnya).
+              </p>
+              <div className="pt-1">
+                <span className="inline-block text-[11px] text-accent-300 bg-surface-800 px-2.5 py-1 rounded-lg border border-surface-700">
+                  Armada Siaga & Helper Terstandarisasi
+                </span>
+              </div>
             </div>
           </div>
 

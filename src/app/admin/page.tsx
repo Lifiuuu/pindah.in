@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   BarChart3,
   TrendingUp,
@@ -420,23 +419,6 @@ export default function AdminDashboardPage() {
             </div>
           </div>
         )}
-
-        {/* Footer Navigation Switcher */}
-        <div className="text-center pt-6 pb-12 space-x-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-brand-800 transition"
-          >
-            ← Kembali ke Tampilan Pelanggan
-          </Link>
-          <span className="text-surface-300">·</span>
-          <Link
-            href="/mitra"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-surface-500 hover:text-brand-800 transition"
-          >
-            Buka Portal Mitra Driver →
-          </Link>
-        </div>
       </div>
     </div>
   );
