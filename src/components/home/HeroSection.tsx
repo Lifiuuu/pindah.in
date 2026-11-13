@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, Users, Clock, CheckCircle2, ArrowRight } from "lucide-react";
+import { Users, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function HeroSection() {
@@ -15,14 +15,8 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-surface-50 to-surface-50 pt-8 pb-8 sm:pt-14 sm:pb-12 px-4 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
-        {/* Solution tag */}
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-100/80 px-3 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold text-brand-800 mb-5 border border-brand-200">
-          <ShieldCheck className="h-3.5 w-3.5 text-brand-600 shrink-0" />
-          <span>Platform Logistik Pindahan Kos Mahasiswa Surabaya</span>
-        </div>
-
-        {/* Main Headline with Balanced Mobile/Tablet Typography */}
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-surface-950 leading-[1.25] sm:leading-[1.18]">
+        {/* Main Headline with Breathable Line Spacing */}
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-surface-950 leading-[1.38] sm:leading-[1.3] lg:leading-[1.25]">
           Pindah Kos Bebas Drama, <br />
           <span className="text-brand-600">
             Tanpa Ribet Nawar
