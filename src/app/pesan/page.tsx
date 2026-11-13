@@ -96,7 +96,7 @@ export default function OrderPage() {
   };
 
   return (
-    <div className="min-h-screen bg-surface-50 pb-36 pt-6 sm:pt-10 px-4 sm:px-6">
+    <div className="min-h-screen bg-surface-50 pb-28 pt-6 sm:pt-10 px-4 sm:px-6">
       <div className="mx-auto max-w-3xl">
         {/* Progress Stepper Bar with Spacious Padding */}
         <div className="rounded-3xl border border-surface-200/90 bg-white p-5 sm:p-6 mb-8 shadow-subtle">
@@ -685,7 +685,7 @@ export default function OrderPage() {
         )}
 
         {/* STICKY BOTTOM ACTION BAR WITH SPACIOUS PADDING */}
-        <div className="fixed bottom-18 md:bottom-0 left-0 z-30 w-full border-t border-surface-200/90 bg-white/95 backdrop-blur shadow-elevated">
+        <div className="fixed bottom-0 left-0 z-30 w-full border-t border-surface-200/90 bg-white/95 backdrop-blur shadow-elevated">
           <div className="mx-auto flex h-20 max-w-3xl items-center justify-between px-4 sm:px-8">
             <button
               onClick={handleBack}

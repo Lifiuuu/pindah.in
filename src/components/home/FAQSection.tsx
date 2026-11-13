@@ -21,20 +21,20 @@ export default function FAQSection() {
     },
     {
       q: "Mengapa Pindah.in tidak menjual kardus bekas atau bubble wrap secara terpisah?",
-      a: "Berdasarkan hasil survei validasi kuesioner mahasiswa (BAB V Refleksi Tim), mahasiswa umumnya sudah memiliki wadah mandiri (box kontainer plastik / tas besar) dan lebih memprioritaskan kepastian kendaraan serta tenaga helper. Oleh karena itu, kami meniadakan stok kardus fisik demi efisiensi biaya layanan.",
+      a: "Berdasarkan riset survei kebutuhan mahasiswa di Surabaya, mahasiswa umumnya sudah memiliki wadah mandiri (box kontainer plastik / tas besar) dan lebih memprioritaskan kepastian armada pikap serta tenaga helper. Oleh karena itu, kami fokus pada kepastian armada dan helper demi efisiensi biaya layanan mahasiswa.",
     },
   ];
 
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-surface-50 border-t border-surface-200/80 mb-12">
+    <section className="py-10 sm:py-16 px-4 sm:px-6 bg-surface-50 border-t border-surface-200/80 mb-8 sm:mb-12">
       <div className="mx-auto max-w-3xl">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-surface-700 bg-white border border-surface-200 px-3.5 py-1.5 rounded-full mb-3 shadow-2xs">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-surface-700 bg-white border border-surface-200 px-3.5 py-1.5 rounded-full mb-3 shadow-2xs">
             <HelpCircle className="h-4 w-4 text-brand-600" />
             <span>Pertanyaan yang Sering Diajukan</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-surface-950">FAQ Pindah.in Surabaya</h2>
-          <p className="text-xs sm:text-sm text-surface-500 mt-1.5">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-surface-950">FAQ Pindah.in Surabaya</h2>
+          <p className="text-xs sm:text-sm text-surface-500 mt-1">
             Informasi lengkap seputar operasional, armada, dan pembayaran
           </p>
         </div>

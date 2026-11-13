@@ -28,13 +28,13 @@ export default function FleetSection() {
   };
 
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-surface-50">
+    <section className="py-10 sm:py-16 px-4 sm:px-6 bg-surface-50">
       <div className="mx-auto max-w-5xl">
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold text-brand-700 uppercase tracking-widest bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-200">
+        <div className="text-center mb-8 sm:mb-12">
+          <span className="text-[11px] sm:text-xs font-bold text-brand-700 uppercase tracking-widest bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-200">
             Katalog Armada
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-surface-950 mt-3 leading-tight">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-surface-950 mt-3 leading-tight">
             Armada Logistik Sesuai Kebutuhan Kos
           </h2>
           <p className="text-xs sm:text-sm text-surface-500 max-w-xl mx-auto mt-2 leading-relaxed">
@@ -42,11 +42,11 @@ export default function FleetSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {VEHICLE_FLEET.map((v) => (
             <div
               key={v.id}
-              className={`rounded-3xl border bg-white p-7 sm:p-8 shadow-subtle hover:shadow-card transition flex flex-col justify-between relative ${
+              className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-7 shadow-subtle hover:shadow-card transition flex flex-col justify-between relative ${
                 v.id === "pikap-bak"
                   ? "border-brand-600 ring-2 ring-brand-500/20"
                   : "border-surface-200/90"
