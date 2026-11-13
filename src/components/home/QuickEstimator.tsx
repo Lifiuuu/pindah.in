@@ -42,9 +42,10 @@ export default function QuickEstimator() {
   };
 
   return (
-    <div id="kalkulator" className="mx-auto max-w-4xl px-4 sm:px-6 -mt-8 mb-16 scroll-mt-24">
-      <div className="rounded-3xl border border-surface-200/90 bg-white p-5 sm:p-8 shadow-elevated">
-        <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-surface-100">
+    <section id="kalkulator" className="w-full bg-surface-50 pt-2 pb-12 sm:pb-16 px-4 sm:px-6 scroll-mt-20">
+      <div className="mx-auto max-w-4xl">
+        <div className="rounded-3xl border border-surface-200/90 bg-white p-5 sm:p-8 shadow-elevated">
+          <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-surface-100">
           <div className="h-10 w-10 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center font-bold shrink-0">
             <Calculator className="h-5 w-5" />
           </div>
@@ -157,8 +158,9 @@ export default function QuickEstimator() {
             <span>Pesan Sekarang</span>
             <ArrowRight className="h-4 w-4 ml-1.5" />
           </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

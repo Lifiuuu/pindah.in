@@ -13,7 +13,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-surface-50 to-surface-50 pt-8 pb-12 sm:pt-14 sm:pb-20 px-4 sm:px-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-surface-50 to-surface-50 pt-8 pb-8 sm:pt-14 sm:pb-12 px-4 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
         {/* Solution tag */}
         <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-100/80 px-3 py-1 sm:px-4 sm:py-1.5 text-[11px] sm:text-xs font-bold text-brand-800 mb-5 border border-brand-200">
