@@ -22,7 +22,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0d9488",
+  themeColor: "#8c6035",
 };
 
 export default function RootLayout({
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="h-full antialiased scroll-smooth">
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 pb-16 md:pb-0 font-sans selection:bg-brand-500 selection:text-white">
+      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900 pb-24 md:pb-8 font-sans selection:bg-brand-600 selection:text-white">
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <BottomNav />
@@ -40,4 +40,3 @@ export default function RootLayout({
     </html>
   );
 }
-

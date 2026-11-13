@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti";
 import {
@@ -10,17 +10,13 @@ import {
   MessageCircle,
   MapPin,
   Clock,
-  ShieldCheck,
   CheckCircle2,
-  ChevronRight,
   Sparkles,
   Star,
   RefreshCw,
   Navigation,
-  ArrowRight,
 } from "lucide-react";
 import { usePindahStore, OrderStatus } from "@/store/usePindahStore";
-import { formatRupiah } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 
@@ -34,7 +30,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
   const [currentStatus, setCurrentStatus] = useState<OrderStatus>(order?.status || "in_transit");
   const [isReviewModalOpen, setIsReviewModalOpen] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(5);
-  const [comment, setComment] = useState<string>("Sangat cepat dan helper ramah banget!");
+  const [comment, setComment] = useState<string>("Sangat cepat dan helper ramah!");
 
   const trackingSteps = [
     {
@@ -74,7 +70,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
     },
     {
       id: "completed",
-      title: "Pindahan Selesai!",
+      title: "Pindahan Selesai",
       desc: "Semua barang telah aman sampai di kamar kos tujuan",
       icon: CheckCircle2,
       eta: "Selesai",
@@ -111,19 +107,19 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-6 px-4 sm:px-6">
-      <div className="mx-auto max-w-2xl space-y-5">
-        {/* PRESENTATION DEMO BANNER */}
-        <div className="rounded-3xl bg-gradient-to-r from-brand-700 via-teal-800 to-slate-900 p-4 sm:p-5 text-white shadow-card">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div>
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-500/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-200 border border-teal-400/30 mb-1">
-                <Sparkles className="h-3 w-3 text-amber-300" />
-                <span>Simulation Controller Demo UAS (3–4 Menit)</span>
+    <div className="min-h-screen bg-surface-50 py-8 sm:py-12 px-4 sm:px-6">
+      <div className="mx-auto max-w-2xl space-y-6">
+        {/* PRESENTATION DEMO BANNER WITH AIRY PADDING */}
+        <div className="rounded-3xl bg-gradient-to-r from-brand-800 via-brand-900 to-surface-900 p-6 sm:p-7 text-white shadow-card">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-600/50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-200 border border-brand-500/40 mb-1">
+                <Sparkles className="h-3.5 w-3.5 text-accent-300" />
+                <span>Simulation Controller Demo UAS</span>
               </div>
-              <h2 className="text-sm sm:text-base font-bold">Simulasi Live Tracking Alur Pindahan</h2>
-              <p className="text-xs text-teal-100/80">
-                Klik tombol di samping untuk memajukan status ke tahap berikutnya secara instan di depan penguji.
+              <h2 className="text-base sm:text-lg font-bold leading-snug">Simulasi Pelacakan Alur Pindahan</h2>
+              <p className="text-xs text-brand-100/80 leading-relaxed max-w-md">
+                Tekan tombol di samping untuk memajukan status pesanan secara instan saat sesi presentasi.
               </p>
             </div>
 
@@ -131,45 +127,42 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
               onClick={handleAdvanceSimulation}
               variant="accent"
               size="sm"
-              className="w-full sm:w-auto text-slate-950 font-bold text-xs shrink-0"
+              className="w-full sm:w-auto text-slate-950 font-bold text-xs shrink-0 py-3 px-4 shadow-sm"
             >
-              <RefreshCw className="h-3.5 w-3.5 mr-1 animate-spin" />
+              <RefreshCw className="h-3.5 w-3.5 mr-1.5 animate-spin" />
               Maju ke Tahap Berikutnya
             </Button>
           </div>
         </div>
 
         {/* Order Identification & ETA */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm flex items-center justify-between">
+        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 shadow-subtle flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">ID Pesanan:</span>
-            <span className="text-base font-extrabold font-mono text-slate-900">{orderId}</span>
+            <span className="text-[10px] text-surface-400 font-bold uppercase tracking-wider block">ID Pesanan:</span>
+            <span className="text-base sm:text-lg font-extrabold font-mono text-surface-900">{orderId}</span>
           </div>
           <div className="text-right">
-            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Status Sekarang:</span>
-            <span className="text-xs font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
+            <span className="text-[10px] text-surface-400 font-bold uppercase tracking-wider block">Status Sekarang:</span>
+            <span className="text-xs font-bold text-brand-800 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
               {trackingSteps[currentStepIndex]?.title || "Aktif"}
             </span>
           </div>
         </div>
 
         {/* Simulated Map Card */}
-        <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-          {/* Map Graphic Canvas Mockup */}
-          <div className="relative h-44 sm:h-52 bg-slate-100 flex items-center justify-center overflow-hidden border-b border-slate-200">
-            {/* SVG Map Lines Mockup */}
+        <div className="rounded-3xl border border-surface-200/90 bg-white overflow-hidden shadow-subtle">
+          <div className="relative h-48 sm:h-56 bg-surface-100 flex items-center justify-center overflow-hidden border-b border-surface-200">
             <svg className="absolute inset-0 h-full w-full opacity-60" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e2e8f0" strokeWidth="1" />
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e8e1d6" strokeWidth="1" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
-              {/* Route Path */}
               <path
                 d="M 60 140 Q 180 80, 280 110 T 480 70"
                 fill="none"
-                stroke="#0d9488"
+                stroke="#8c6035"
                 strokeWidth="5"
                 strokeDasharray="8 6"
               />
@@ -177,7 +170,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
 
             {/* Origin Pin */}
             <div className="absolute left-8 bottom-8 flex flex-col items-center">
-              <span className="bg-white text-[10px] font-bold text-slate-800 px-2 py-0.5 rounded-md shadow-sm border border-slate-200 mb-1">
+              <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
                 Kos Asal (UNAIR C)
               </span>
               <div className="h-4 w-4 rounded-full bg-brand-600 ring-4 ring-brand-200 animate-pulse" />
@@ -191,132 +184,130 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                 top: `${45 - Math.sin((currentStepIndex / 5) * Math.PI) * 15}%`,
               }}
             >
-              <span className="bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md mb-1 flex items-center gap-1">
-                <Truck className="h-3 w-3 text-brand-400" />
+              <span className="bg-surface-900 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md mb-1 flex items-center gap-1">
+                <Truck className="h-3 w-3 text-accent-300" />
                 {driver.plateNumber}
               </span>
-              <div className="h-7 w-7 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md ring-2 ring-white">
-                <Truck className="h-3.5 w-3.5" />
+              <div className="h-8 w-8 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md ring-2 ring-white">
+                <Truck className="h-4 w-4" />
               </div>
             </div>
 
             {/* Destination Pin */}
             <div className="absolute right-8 top-6 flex flex-col items-center">
-              <span className="bg-white text-[10px] font-bold text-slate-800 px-2 py-0.5 rounded-md shadow-sm border border-slate-200 mb-1">
+              <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
                 Kos Baru (UNAIR B)
               </span>
-              <div className="h-4 w-4 rounded-full bg-accent-500 ring-4 ring-accent-200" />
+              <div className="h-4 w-4 rounded-full bg-accent-600 ring-4 ring-accent-200" />
             </div>
           </div>
 
-          {/* Active Status Header */}
-          <div className="p-4 bg-brand-50/50 flex items-center justify-between border-b border-brand-100 text-xs">
+          <div className="p-5 bg-brand-50/50 flex items-center justify-between border-b border-brand-100 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-brand-600" />
-              <span className="font-semibold text-slate-700">
+              <span className="font-semibold text-surface-800">
                 {trackingSteps[currentStepIndex]?.eta || "Sedang Berlangsung"}
               </span>
             </div>
-            <span className="text-slate-500 font-medium">Jarak Total: ± 7.5 km</span>
+            <span className="text-surface-500 font-medium">Jarak Total: ± 7.5 km</span>
           </div>
         </div>
 
-        {/* Driver & Helper Info Card */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-3">
-              <div className="h-11 w-11 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center shrink-0">
+        {/* Driver & Helper Info Card with Generous Padding */}
+        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-7 shadow-subtle space-y-4">
+          <div className="flex items-center justify-between pb-4 border-b border-surface-100">
+            <div className="flex items-center gap-3.5">
+              <div className="h-12 w-12 rounded-2xl bg-brand-50 border border-brand-200 text-brand-800 font-bold text-sm flex items-center justify-center shrink-0">
                 JS
               </div>
               <div>
-                <div className="flex items-center gap-1.5">
-                  <h4 className="text-sm font-bold text-slate-900">{driver.name}</h4>
-                  <span className="flex items-center text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">
-                    <Star className="h-3 w-3 fill-amber-400 text-amber-400 mr-0.5" />
+                <div className="flex items-center gap-2">
+                  <h4 className="text-sm sm:text-base font-bold text-surface-900">{driver.name}</h4>
+                  <span className="flex items-center text-[10px] font-bold text-accent-800 bg-accent-50 px-2 py-0.5 rounded border border-accent-200">
+                    <Star className="h-3 w-3 fill-accent-500 text-accent-500 mr-1" />
                     {driver.rating}
                   </span>
                 </div>
-                <p className="text-xs text-slate-500">{driver.vehicleModel}</p>
-                <p className="text-xs font-mono font-bold text-brand-700">{driver.plateNumber}</p>
+                <p className="text-xs text-surface-500 mt-0.5">{driver.vehicleModel}</p>
+                <p className="text-xs font-mono font-bold text-brand-700 mt-0.5">{driver.plateNumber}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => alert(`Simulasi Panggilan ke ${driver.name} (0812-3456-7890)`)}
-                className="h-9 w-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center hover:bg-slate-200 transition"
+                className="h-10 w-10 rounded-2xl bg-surface-100 text-surface-700 flex items-center justify-center hover:bg-surface-200 transition"
               >
                 <Phone className="h-4 w-4" />
               </button>
               <button
                 type="button"
                 onClick={() => alert(`Simulasi WhatsApp ke Driver: Halo Pak Joko, kamar kos saya di lantai 2 ya.`)}
-                className="h-9 w-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center hover:bg-emerald-600 shadow-sm transition"
+                className="h-10 w-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 shadow-sm transition"
               >
                 <MessageCircle className="h-4 w-4" />
               </button>
             </div>
           </div>
 
-          <div className="mt-3 pt-1 flex items-center justify-between text-xs text-slate-600">
-            <span className="flex items-center gap-1.5">
-              <Users className="h-3.5 w-3.5 text-brand-600" />
-              Tenaga Helper: <strong className="text-slate-800">{driver.helperName}</strong>
+          <div className="pt-1 flex items-center justify-between text-xs sm:text-sm text-surface-600">
+            <span className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-brand-600" />
+              Tenaga Helper: <strong className="text-surface-900">{driver.helperName}</strong>
             </span>
-            <span className="text-[11px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] text-brand-800 font-bold bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
               Door-to-Door Aktif
             </span>
           </div>
         </div>
 
-        {/* Vertical Step Timeline */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-          <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">
+        {/* Vertical Step Timeline with Comfortable Spacing */}
+        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
+          <h3 className="text-base font-bold text-surface-950 mb-6 pb-3 border-b border-surface-100">
             Tahapan Eksekusi Pindahan Kos
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {trackingSteps.map((step, idx) => {
               const isPast = idx < currentStepIndex;
               const isCurrent = idx === currentStepIndex;
-              const isUpcoming = idx > currentStepIndex;
               const StepIcon = step.icon;
 
               return (
-                <div key={step.id} className="flex items-start gap-3 relative">
+                <div key={step.id} className="flex items-start gap-4 relative">
                   {idx < trackingSteps.length - 1 && (
                     <div
-                      className={`absolute left-4 top-8 -bottom-4 w-0.5 ${
-                        isPast ? "bg-emerald-400" : "bg-slate-200"
+                      className={`absolute left-4 top-9 -bottom-6 w-0.5 ${
+                        isPast ? "bg-brand-500" : "bg-surface-200"
                       }`}
                     />
                   )}
 
                   <div
-                    className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 z-10 transition ${
+                    className={`h-9 w-9 rounded-2xl flex items-center justify-center shrink-0 z-10 transition ${
                       isPast
-                        ? "bg-emerald-500 text-white"
+                        ? "bg-brand-600 text-white shadow-xs"
                         : isCurrent
-                        ? "bg-brand-600 text-white ring-4 ring-brand-100"
-                        : "bg-slate-100 text-slate-400"
+                        ? "bg-brand-700 text-white ring-4 ring-brand-100 shadow-sm"
+                        : "bg-surface-100 text-surface-400"
                     }`}
                   >
                     {isPast ? <CheckCircle2 className="h-4 w-4" /> : <StepIcon className="h-4 w-4" />}
                   </div>
 
-                  <div className="flex-1 pb-2">
+                  <div className="flex-1 pb-1">
                     <div className="flex items-center justify-between">
                       <h4
                         className={`text-xs sm:text-sm font-bold ${
-                          isCurrent ? "text-brand-700" : isPast ? "text-slate-900" : "text-slate-400"
+                          isCurrent ? "text-brand-800" : isPast ? "text-surface-900" : "text-surface-400"
                         }`}
                       >
                         {step.title}
                       </h4>
-                      <span className="text-[10px] text-slate-400">{step.eta}</span>
+                      <span className="text-[11px] text-surface-400">{step.eta}</span>
                     </div>
-                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">{step.desc}</p>
+                    <p className="text-xs text-surface-500 mt-1 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               );
@@ -325,11 +316,11 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* Footer Navigation */}
-        <div className="flex items-center justify-between text-xs text-slate-500 pt-2">
-          <Link href="/riwayat" className="hover:text-brand-600 font-semibold">
+        <div className="flex items-center justify-between text-xs sm:text-sm text-surface-500 pt-2">
+          <Link href="/riwayat" className="hover:text-brand-700 font-bold">
             ← Kembali ke Riwayat Pesanan
           </Link>
-          <Link href="/mitra-preview" className="text-brand-600 font-bold hover:underline">
+          <Link href="/mitra-preview" className="text-brand-700 font-bold hover:underline">
             Lihat Sisi Driver (Bagi Hasil 80:20) →
           </Link>
         </div>
@@ -338,12 +329,12 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
         <Modal
           isOpen={isReviewModalOpen}
           onClose={() => setIsReviewModalOpen(false)}
-          title="Pindahan Kos Sukses Selesai!"
+          title="Pindahan Kos Sukses Selesai"
           description="Bantu kami memberikan apresiasi kepada Pak Joko & Mas Dimas."
         >
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div className="text-center py-2">
-              <span className="text-xs text-slate-500 font-medium block mb-2">Beri Bintang Pengalaman Pindahan</span>
+              <span className="text-xs text-surface-500 font-medium block mb-2">Beri Bintang Pengalaman Pindahan</span>
               <div className="flex items-center justify-center gap-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -353,8 +344,8 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                     className="p-1 hover:scale-110 transition"
                   >
                     <Star
-                      className={`h-7 w-7 ${
-                        star <= rating ? "fill-amber-400 text-amber-400" : "text-slate-300"
+                      className={`h-8 w-8 ${
+                        star <= rating ? "fill-accent-500 text-accent-500" : "text-surface-200"
                       }`}
                     />
                   </button>
@@ -363,16 +354,16 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Komentar / Pengalaman</label>
+              <label className="block text-xs font-bold text-surface-800 mb-2">Komentar / Pengalaman</label>
               <textarea
                 rows={3}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-xs focus:border-brand-500 focus:bg-white focus:outline-none"
+                className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
               />
             </div>
 
-            <Button onClick={handleSubmitReview} size="md" className="w-full text-xs">
+            <Button onClick={handleSubmitReview} size="md" className="w-full text-xs sm:text-sm py-3.5">
               Kirim Ulasan & Selesai
             </Button>
           </div>
@@ -381,4 +372,3 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
     </div>
   );
 }
-

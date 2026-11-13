@@ -16,18 +16,19 @@ export default function HomePage() {
       <FAQSection />
 
       {/* Footer Info for UAS */}
-      <footer className="py-6 px-4 bg-slate-900 text-slate-400 text-center text-xs border-t border-slate-800">
-        <p className="font-semibold text-slate-200">
-          Pindah.in · Platform Kewirausahaan Logistik Pindahan Mahasiswa
-        </p>
-        <p className="mt-1 text-slate-400">
-          Proyek Akhir Kewirausahaan Bidang TI (FVK25612002) — D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga
-        </p>
-        <p className="mt-1 text-[11px] text-slate-500">
-          Kelompok 4: Putri Atika · Faatin Sausan · Maulidina Naurah · Alifia Putri · Reta Hadiana
-        </p>
+      <footer className="py-10 px-4 sm:px-6 bg-surface-900 text-surface-400 text-center text-xs border-t border-surface-800">
+        <div className="mx-auto max-w-2xl space-y-2">
+          <p className="font-bold text-surface-200 text-sm">
+            Pindah.in · Platform Kewirausahaan Logistik Pindahan Mahasiswa
+          </p>
+          <p className="text-surface-400 leading-relaxed">
+            Proyek Akhir Kewirausahaan Bidang TI (FVK25612002) — D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga
+          </p>
+          <p className="text-[11px] text-surface-500 pt-2 border-t border-surface-800">
+            Kelompok 4: Putri Atika · Faatin Sausan · Maulidina Naurah · Alifia Putri · Reta Hadiana
+          </p>
+        </div>
       </footer>
     </div>
   );
 }
-

@@ -8,8 +8,8 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      q: "Apakah biaya sewa pikap di Pindah.in benar-benar fix tanpa tawar-menawar?",
-      a: "Ya, 100% pasti. Sistem kami mengkalkulasi tarif secara otomatis berdasarkan jarak tempuh, jenis kendaraan, dan tingkat lantai kos. Harga yang tertera di aplikasi saat konfirmasi adalah harga final tanpa ada biaya tersembunyi.",
+      q: "Apakah biaya sewa pikap di Pindah.in benar-benar pasti tanpa tawar-menawar?",
+      a: "Ya, 100% fixed dan transparan. Sistem kami mengkalkulasi tarif secara otomatis berdasarkan jarak tempuh, jenis kendaraan, dan tingkat lantai kos. Harga yang tertera di aplikasi saat konfirmasi adalah harga final tanpa ada biaya tersembunyi.",
     },
     {
       q: "Apakah sudah termasuk orang yang bantu angkat barang (helper)?",
@@ -26,35 +26,40 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="py-12 px-4 sm:px-6 bg-slate-50 border-t border-slate-100 mb-8">
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-surface-50 border-t border-surface-200/80 mb-12">
       <div className="mx-auto max-w-3xl">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1 rounded-full mb-2">
-            <HelpCircle className="h-3.5 w-3.5 text-brand-600" />
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-surface-700 bg-white border border-surface-200 px-3.5 py-1.5 rounded-full mb-3 shadow-2xs">
+            <HelpCircle className="h-4 w-4 text-brand-600" />
             <span>Pertanyaan yang Sering Diajukan</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-slate-900">FAQ Pindah.in Surabaya</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-surface-950">FAQ Pindah.in Surabaya</h2>
+          <p className="text-xs sm:text-sm text-surface-500 mt-1.5">
+            Informasi lengkap seputar operasional, armada, dan pembayaran
+          </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => {
             const isOpen = openIdx === i;
             return (
               <div
                 key={i}
-                className="rounded-2xl border border-slate-200 bg-white overflow-hidden transition-shadow hover:shadow-sm"
+                className="rounded-3xl border border-surface-200/90 bg-white overflow-hidden transition-all shadow-subtle hover:shadow-card"
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-900"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-surface-900"
                 >
-                  <span>{faq.q}</span>
+                  <span className="leading-snug">{faq.q}</span>
                   <ChevronDown
-                    className={`h-4 w-4 text-slate-400 transition-transform ${isOpen ? "rotate-180 text-brand-600" : ""}`}
+                    className={`h-5 w-5 text-surface-400 shrink-0 transition-transform ${
+                      isOpen ? "rotate-180 text-brand-600" : ""
+                    }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-3">
+                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-surface-600 leading-relaxed border-t border-surface-100 pt-4">
                     {faq.a}
                   </div>
                 )}
@@ -66,4 +71,3 @@ export default function FAQSection() {
     </section>
   );
 }
-

@@ -10,21 +10,21 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", isLoading, children, disabled, ...props }, ref) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-semibold rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]";
+      "inline-flex items-center justify-center font-semibold rounded-2xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]";
 
     const variants = {
-      primary: "bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500 shadow-sm shadow-brand-600/20",
-      secondary: "bg-slate-100 text-slate-800 hover:bg-slate-200 focus:ring-slate-400",
-      outline: "border border-slate-300 text-slate-700 hover:bg-slate-50 focus:ring-slate-300 bg-white",
-      ghost: "text-slate-600 hover:bg-slate-100 focus:ring-slate-300",
+      primary: "bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500 shadow-sm shadow-brand-700/20",
+      secondary: "bg-surface-100 text-surface-800 hover:bg-surface-200 focus:ring-surface-400",
+      outline: "border border-surface-200 text-surface-800 hover:bg-surface-100 focus:ring-surface-300 bg-white",
+      ghost: "text-surface-700 hover:bg-surface-100 focus:ring-surface-300",
       accent: "bg-accent-500 text-slate-950 font-bold hover:bg-accent-600 focus:ring-accent-400 shadow-sm",
-      danger: "bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-500",
+      danger: "bg-rose-700 text-white hover:bg-rose-800 focus:ring-rose-500",
     };
 
     const sizes = {
-      sm: "text-xs px-3 py-1.5 gap-1.5",
-      md: "text-sm px-4 py-2.5 gap-2",
-      lg: "text-base px-5 py-3.5 gap-2.5 font-bold",
+      sm: "text-xs px-3.5 py-2 gap-1.5",
+      md: "text-sm px-5 py-3 gap-2",
+      lg: "text-base px-6 py-4 gap-2.5 font-bold",
     };
 
     return (
@@ -50,4 +50,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 Button.displayName = "Button";
-
