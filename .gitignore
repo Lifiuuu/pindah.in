@@ -35,3 +35,12 @@ next-env.d.ts
 
 # agent
 .agent
+
+# personal documents & assignments
+*.docx
+*.pdf
+*.doc
+*.ppt
+*.pptx
+KEWIRAUSAHAAN.docx
+Kriteria_UAS_Presentasi_Proyek_Akhir_Kewirausahaan_TI.pdf
