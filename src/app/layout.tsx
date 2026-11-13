@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/Navbar";
 import BottomNav from "@/components/BottomNav";
+import DemoRoleSwitcher from "@/components/DemoRoleSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <BottomNav />
+        <DemoRoleSwitcher />
       </body>
     </html>
   );
