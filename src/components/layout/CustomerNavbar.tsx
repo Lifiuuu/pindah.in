@@ -98,8 +98,8 @@ export default function CustomerNavbar() {
           </div>
         </Link>
 
-        {/* Customer Desktop Nav Links (Hidden on mobile & tablet: < lg) */}
-        <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
+        {/* Customer Desktop Nav Links (Visible on desktop: lg+) */}
+        <nav className="hidden lg:flex items-center gap-1.5 text-sm font-medium">
           {customerLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -110,7 +110,7 @@ export default function CustomerNavbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3.5 py-2 rounded-xl transition-colors flex items-center gap-1.5 text-xs font-semibold",
+                  "px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5 text-xs font-semibold",
                   isActive
                     ? "bg-brand-100/70 text-brand-800 font-bold"
                     : "text-surface-600 hover:text-surface-900 hover:bg-surface-100"
@@ -122,22 +122,14 @@ export default function CustomerNavbar() {
           })}
         </nav>
 
-        {/* Header Right Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href="/pesan"
-            className="inline-flex items-center justify-center rounded-xl bg-brand-600 px-3.5 sm:px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-700 active:scale-95 transition"
-          >
-            Pesan Sekarang
-          </Link>
-
-          {/* Hamburger Menu Toggle (Visible on Mobile & Tablet: < lg) */}
+        {/* Hamburger Menu Toggle (Mobile & Tablet: < lg) */}
+        <div className="flex items-center lg:hidden">
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
             aria-expanded={isOpen}
-            className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-surface-200/90 bg-white text-surface-800 hover:bg-surface-100 hover:text-surface-950 active:scale-95 transition"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-surface-200/90 bg-white text-surface-800 hover:bg-surface-100 hover:text-surface-950 active:scale-95 transition"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
