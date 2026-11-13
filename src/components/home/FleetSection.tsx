@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Check, ArrowRight, Weight, Box, Users } from "lucide-react";
+import { ArrowRight, Weight, Box, Users, Truck, ShieldCheck, Compass } from "lucide-react";
 import { VEHICLE_FLEET } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
@@ -17,18 +16,29 @@ export default function FleetSection() {
     router.push("/pesan");
   };
 
+  const getVehicleIcon = (iconType: string) => {
+    switch (iconType) {
+      case "pickup-box":
+        return <ShieldCheck className="h-6 w-6 text-brand-600" />;
+      case "cargo-trike":
+        return <Compass className="h-6 w-6 text-brand-600" />;
+      default:
+        return <Truck className="h-6 w-6 text-brand-600" />;
+    }
+  };
+
   return (
     <section className="py-12 px-4 sm:px-6 bg-slate-50">
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-8">
-          <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-brand-700 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
             Pilihan Armada
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-            Armada Tepat untuk Segala Jenis Kos
+            Armada Logistik Sesuai Kebutuhan Kos
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-1">
-            Mulai dari kos lorong sempit hingga kos penuh furnitur besar, kami sediakan armada yang pas.
+            Mulai dari akses gang kos sempit hingga kapasitas penuh satu kamar bertingkat.
           </p>
         </div>
 
@@ -43,9 +53,7 @@ export default function FleetSection() {
               {v.badge && (
                 <span
                   className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[11px] font-bold shadow-sm ${
-                    v.id === "pikap-bak"
-                      ? "bg-brand-600 text-white"
-                      : "bg-slate-800 text-white"
+                    v.id === "pikap-bak" ? "bg-brand-600 text-white" : "bg-slate-800 text-white"
                   }`}
                 >
                   {v.badge}
@@ -53,7 +61,12 @@ export default function FleetSection() {
               )}
 
               <div>
-                <div className="text-4xl text-center mb-3 mt-1">{v.imageUrl}</div>
+                <div className="flex justify-center mb-4 mt-2">
+                  <div className="h-14 w-14 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center">
+                    {getVehicleIcon(v.iconType)}
+                  </div>
+                </div>
+
                 <h3 className="text-lg font-bold text-slate-900 text-center">{v.name}</h3>
                 <p className="text-xs text-slate-500 text-center mb-4">{v.subtitle}</p>
 
@@ -109,4 +122,3 @@ export default function FleetSection() {
     </section>
   );
 }
-

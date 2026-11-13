@@ -195,8 +195,8 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                 <Truck className="h-3 w-3 text-brand-400" />
                 {driver.plateNumber}
               </span>
-              <div className="h-7 w-7 rounded-full bg-brand-500 text-white flex items-center justify-center shadow-lg ring-4 ring-white">
-                🛻
+              <div className="h-7 w-7 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md ring-2 ring-white">
+                <Truck className="h-3.5 w-3.5" />
               </div>
             </div>
 
@@ -225,8 +225,8 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
         <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-2xl">
-                👨‍✈️
+              <div className="h-11 w-11 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center shrink-0">
+                JS
               </div>
               <div>
                 <div className="flex items-center gap-1.5">

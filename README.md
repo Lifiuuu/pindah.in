@@ -1,4 +1,4 @@
-# Pindah.in 🛻📦
+# Pindah.in
 
 > **Platform Logistik Pindahan Kos Mahasiswa Terintegrasi Surabaya**  
 > Proyek Akhir Mata Kuliah Kewirausahaan Bidang TI (FVK25612002) · Program Studi D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga.
@@ -11,7 +11,7 @@
 
 ---
 
-## 📌 Latar Belakang & Validasi Bisnis
+## Latar Belakang & Validasi Bisnis
 
 Berdasarkan hasil survei kuesioner mahasiswa perantau di Surabaya (*Business Plan Pindah.in*), 100% responden menyatakan kekhawatiran berat (skor 5/5) pada:
 1. **Ketidakpastian Tarif**: Sewa pikap konvensional memaksa tawar-menawar sepihak dan rawan biaya tambahan di akhir.
@@ -22,7 +22,7 @@ Platform **Pindah.in** hadir sebagai solusi berbasis teknologi web mobile-first 
 
 ---
 
-## ✨ Fitur Unggulan Prototipe
+## Fitur Unggulan Prototipe
 
 1. **Kalkulator Tarif Otomatis & Transparan** (`/` & `/pesan`):
    - Perhitungan harga instan berbasis jarak tempuh, tipe kendaraan, dan kompensasi tangga lantai kos tanpa biaya siluman.
@@ -42,7 +42,7 @@ Platform **Pindah.in** hadir sebagai solusi berbasis teknologi web mobile-first 
 
 ---
 
-## 🚀 Cara Menjalankan secara Lokal
+## Cara Menjalankan secara Lokal
 
 Pastikan Node.js (versi 18+) sudah terpasang di komputermu:
 
@@ -61,7 +61,7 @@ Buka peramban di `http://localhost:3000`.
 
 ---
 
-## 🌐 Panduan Deploy ke Vercel
+## Panduan Deploy ke Vercel
 
 Aplikasi ini telah dikonfigurasi dan diuji agar siap di-deploy langsung ke **Vercel**:
 
@@ -80,7 +80,7 @@ vercel
 
 ---
 
-## 👥 Tim Pengembang (Kelompok 4)
+## Tim Pengembang (Kelompok 4)
 - **Putri Atika Mahardika Dewi** (434241080)
 - **Faatin Sausan Firdaus** (434241090)
 - **Maulidina Naurah Salsabila** (434241098)

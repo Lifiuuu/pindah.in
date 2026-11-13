@@ -15,7 +15,7 @@ export interface VehicleOption {
   volumeM3: number;
   basePrice: number;
   pricePerKm: number;
-  imageUrl: string;
+  iconType: "pickup-open" | "pickup-box" | "cargo-trike";
   badge?: string;
   recommendedFor: string;
 }
@@ -24,25 +24,25 @@ export interface InventoryItem {
   id: string;
   name: string;
   category: "furniture" | "electronics" | "boxes" | "misc";
-  spaceUnit: number; // 1-10 arbitrary units for capacity gauge
+  spaceUnit: number;
   iconName: string;
 }
 
 export interface Testimonial {
   id: string;
   name: string;
+  initials: string;
   major: string;
   campus: string;
   rating: number;
   comment: string;
-  avatar: string;
   date: string;
 }
 
 export interface SUSQuestion {
   id: number;
   text: string;
-  isPositive: boolean; // odd is positive, even is negative
+  isPositive: boolean;
 }
 
 export const POPULAR_LOCATIONS: LocationArea[] = [
@@ -100,8 +100,8 @@ export const VEHICLE_FLEET: VehicleOption[] = [
     volumeM3: 2.5,
     basePrice: 90000,
     pricePerKm: 6000,
-    imageUrl: "🛻",
-    badge: "Paling Populer (UAS Standar)",
+    iconType: "pickup-open",
+    badge: "Paling Populer",
     recommendedFor: "Pindahan kos lengkap 1 kamar penuh",
   },
   {
@@ -113,7 +113,7 @@ export const VEHICLE_FLEET: VehicleOption[] = [
     volumeM3: 3.2,
     basePrice: 115000,
     pricePerKm: 7000,
-    imageUrl: "🚚",
+    iconType: "pickup-box",
     badge: "Anti Hujan",
     recommendedFor: "Banyak perangkat elektronik & barang berharga",
   },
@@ -126,8 +126,8 @@ export const VEHICLE_FLEET: VehicleOption[] = [
     volumeM3: 1.2,
     basePrice: 60000,
     pricePerKm: 4500,
-    imageUrl: "🛺",
-    badge: "Gang Sempit",
+    iconType: "cargo-trike",
+    badge: "Akses Gang",
     recommendedFor: "Barang minimalis / kos lorong sempit",
   },
 ];
@@ -150,34 +150,34 @@ export const MOCK_TESTIMONIALS: Testimonial[] = [
   {
     id: "testi-1",
     name: "Putri Atika Mahardika",
+    initials: "PA",
     major: "D4 Teknik Informatika",
     campus: "Vokasi UNAIR 2024",
     rating: 5,
     comment:
-      "Pindah dari Sutorejo ke Dharmawangsa tenang banget! Gak ada drama tawar-menawar harga sepihak sama abang sopir, tarifnya jelas dari awal di aplikasi.",
-    avatar: "👩‍🎓",
+      "Pindah dari Sutorejo ke Dharmawangsa sangat tertata. Tidak ada tawar-menawar sepihak, estimasi biaya jelas sejak awal di aplikasi.",
     date: "12 Okt 2026",
   },
   {
     id: "testi-2",
     name: "Faatin Sausan Firdaus",
+    initials: "FS",
     major: "Fakultas Kedokteran Gigi",
     campus: "UNAIR Kampus A",
     rating: 5,
     comment:
-      "Helper-nya sopan dan cekatan banget! Kasur dan lemari berat diangkat dari kamar lantai 3 sampai masuk ke kamar kos baru. Recommended parah!",
-    avatar: "👩‍⚕️",
+      "Helper sangat sigap dan komunikatif. Kasur dan lemari dibantu angkut dari kamar lantai 3 hingga tertata di kamar kos baru.",
     date: "28 Sep 2026",
   },
   {
     id: "testi-3",
     name: "Rizky Bima Aditya",
+    initials: "RB",
     major: "Sistem Informasi",
     campus: "FST UNAIR Kampus C",
     rating: 5,
     comment:
-      "Fitur kirim link tagihan ke ortu ngebantu banget. Mama di luar kota tinggal klik link WhatsApp langsung bayar pakai QRIS M-Banking. Beres!",
-    avatar: "👨‍💻",
+      "Fitur pengiriman tautan invoice ke orang tua sangat praktis. Rincian biaya transparan dan pembayaran QRIS langsung terverifikasi.",
     date: "04 Nov 2026",
   },
 ];
@@ -197,13 +197,12 @@ export const SUS_QUESTIONS: SUSQuestion[] = [
 
 export const MOCK_ACTIVE_DRIVER = {
   name: "Pak Joko Slamet",
+  initials: "JS",
   rating: 4.9,
   completedTrips: 184,
   phone: "0812-3456-7890",
   vehicleModel: "Daihatsu Gran Max Pick Up (Putih)",
   plateNumber: "L 1832 AB",
-  photo: "👨‍✈️",
   helperName: "Mas Dimas Prasetyo",
   helperRole: "Helper Door-to-Door Profesional",
 };
-

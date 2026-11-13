@@ -368,7 +368,7 @@ RATA-RATA SKOR KELOMPOK: ${(
             </div>
 
             <p className="text-xs text-emerald-800 leading-relaxed border-t border-emerald-200/70 pt-3">
-              🎉 Skor <strong>{calculatedScore.toFixed(1)}</strong> berada di atas rata-rata industri standar (68.0).
+              Skor <strong>{calculatedScore.toFixed(1)}</strong> berada di atas rata-rata industri standar (68.0).
               Sistem dinilai sangat layak (*Acceptable*) dan siap dipresentasikan di hadapan dosen penguji.
             </p>
           </div>

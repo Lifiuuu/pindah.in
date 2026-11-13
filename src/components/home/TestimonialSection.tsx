@@ -6,14 +6,14 @@ export default function TestimonialSection() {
     <section className="py-12 px-4 sm:px-6 bg-white border-t border-slate-100">
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-8">
-          <span className="text-xs font-bold text-accent-700 uppercase tracking-widest bg-accent-50 px-3 py-1 rounded-full">
-            Cerita Mahasiswa Surabaya
+          <span className="text-xs font-bold text-slate-700 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+            Pengalaman Mahasiswa
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-            Pindahan Tenang, Fokus Kuliah
+            Pindahan Lebih Efisien dan Terencana
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto mt-1">
-            Dengarkan pengalaman teman-teman mahasiswa Universitas Airlangga yang telah mencoba Pindah.in.
+            Ulasan dari rekan mahasiswa perantau di kawasan kampus Universitas Airlangga Surabaya.
           </p>
         </div>
 
@@ -35,7 +35,9 @@ export default function TestimonialSection() {
               </div>
 
               <div className="flex items-center gap-3 pt-3 border-t border-slate-200/60">
-                <span className="text-2xl">{t.avatar}</span>
+                <div className="h-9 w-9 rounded-full bg-brand-100 border border-brand-200 text-brand-800 font-bold text-xs flex items-center justify-center shrink-0">
+                  {t.initials}
+                </div>
                 <div>
                   <h4 className="text-xs sm:text-sm font-bold text-slate-900">{t.name}</h4>
                   <p className="text-[11px] text-slate-500">
@@ -50,4 +52,3 @@ export default function TestimonialSection() {
     </section>
   );
 }
-

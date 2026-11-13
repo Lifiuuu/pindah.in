@@ -26,10 +26,11 @@ import {
   Box,
   Layers,
   Sparkles,
+  Compass,
 } from "lucide-react";
 import { POPULAR_LOCATIONS, VEHICLE_FLEET, INVENTORY_ITEMS } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
-import { formatRupiah } from "@/lib/utils";
+import { formatRupiah, cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
@@ -358,7 +359,15 @@ export default function OrderPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className="text-3xl sm:text-4xl">{v.imageUrl}</div>
+                        <div className="h-12 w-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center shrink-0">
+                          {v.id === "pikap-box" ? (
+                            <ShieldCheck className="h-6 w-6 text-brand-600" />
+                          ) : v.id === "motor-roda3" ? (
+                            <Compass className="h-6 w-6 text-brand-600" />
+                          ) : (
+                            <Truck className="h-6 w-6 text-brand-600" />
+                          )}
+                        </div>
                         <div>
                           <div className="flex items-center gap-2">
                             <h4 className="text-sm sm:text-base font-bold text-slate-900">{v.name}</h4>
@@ -466,8 +475,16 @@ export default function OrderPage() {
 
               <div className="flex items-center justify-between mt-2 text-[11px] text-slate-500">
                 <span>Armada: {selectedVehicleObj.name}</span>
-                <span>
-                  {capacityPercent > 90 ? "⚠️ Muatan hampir penuh!" : "✅ Kapasitas armada sangat aman"}
+                <span className="inline-flex items-center gap-1.5 font-medium">
+                  <span
+                    className={cn(
+                      "h-2 w-2 rounded-full",
+                      capacityPercent > 90 ? "bg-rose-500" : "bg-emerald-500"
+                    )}
+                  />
+                  {capacityPercent > 90
+                    ? "Kapasitas muatan hampir penuh"
+                    : "Kapasitas muatan aman"}
                 </span>
               </div>
             </div>
