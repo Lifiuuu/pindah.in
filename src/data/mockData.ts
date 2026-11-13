@@ -39,12 +39,6 @@ export interface Testimonial {
   date: string;
 }
 
-export interface SUSQuestion {
-  id: number;
-  text: string;
-  isPositive: boolean;
-}
-
 export const POPULAR_LOCATIONS: LocationArea[] = [
   {
     id: "unair-b",
@@ -180,19 +174,6 @@ export const MOCK_TESTIMONIALS: Testimonial[] = [
       "Fitur pengiriman tautan invoice ke orang tua sangat praktis. Rincian biaya transparan dan pembayaran QRIS langsung terverifikasi.",
     date: "04 Nov 2026",
   },
-];
-
-export const SUS_QUESTIONS: SUSQuestion[] = [
-  { id: 1, text: "Saya berpikir akan sering menggunakan platform Pindah.in saat butuh pindah kos.", isPositive: true },
-  { id: 2, text: "Saya merasa sistem pemesanan platform ini terlalu rumit dan berbelit-belit.", isPositive: false },
-  { id: 3, text: "Saya merasa platform Pindah.in sangat mudah dan praktis untuk digunakan.", isPositive: true },
-  { id: 4, text: "Saya merasa membutuhkan bantuan teknis orang lain untuk bisa menggunakan platform ini.", isPositive: false },
-  { id: 5, text: "Saya merasa fitur-fitur di dalam aplikasi terintegrasi dengan sangat rapi dan fungsional.", isPositive: true },
-  { id: 6, text: "Saya merasa ada terlalu banyak hal yang membingungkan atau tidak konsisten pada aplikasi ini.", isPositive: false },
-  { id: 7, text: "Saya yakin mayoritas mahasiswa kos akan dapat mempelajari aplikasi ini dengan sangat cepat.", isPositive: true },
-  { id: 8, text: "Saya merasa antarmuka aplikasi ini terasa janggal, kaku, atau menyulitkan saat digunakan.", isPositive: false },
-  { id: 9, text: "Saya merasa percaya diri dan nyaman saat melakukan alur pemesanan di Pindah.in.", isPositive: true },
-  { id: 10, text: "Saya harus membiasakan diri mempelajari banyak hal sebelum mahir menggunakan sistem ini.", isPositive: false },
 ];
 
 export const MOCK_ACTIVE_DRIVER = {

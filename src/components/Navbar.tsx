@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Truck, ClipboardCheck } from "lucide-react";
+import { Truck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Navbar() {
@@ -13,7 +13,6 @@ export default function Navbar() {
     { href: "/pesan", label: "Pesan Pindahan" },
     { href: "/riwayat", label: "Riwayat" },
     { href: "/mitra-preview", label: "Portal Mitra (80:20)" },
-    { href: "/uji-pengguna", label: "Uji Pengguna (SUS)", badge: "UAS" },
   ];
 
   return (
@@ -53,11 +52,6 @@ export default function Navbar() {
                 )}
               >
                 {link.label}
-                {link.badge && (
-                  <span className="rounded-md bg-accent-600 px-1.5 py-0.5 text-[9px] font-black text-white uppercase tracking-wider">
-                    {link.badge}
-                  </span>
-                )}
               </Link>
             );
           })}
@@ -66,16 +60,8 @@ export default function Navbar() {
         {/* Header Right Actions */}
         <div className="flex items-center gap-2.5">
           <Link
-            href="/uji-pengguna"
-            className="md:hidden flex items-center gap-1.5 text-xs font-semibold bg-accent-100 text-accent-900 border border-accent-200 px-3 py-1.5 rounded-full"
-          >
-            <ClipboardCheck className="h-3.5 w-3.5" />
-            <span>Tes SUS</span>
-          </Link>
-
-          <Link
             href="/pesan"
-            className="hidden sm:inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-700 transition"
+            className="inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-700 transition"
           >
             Pesan Sekarang
           </Link>

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { POPULAR_LOCATIONS, VEHICLE_FLEET, LocationArea, VehicleOption, MOCK_ACTIVE_DRIVER } from "@/data/mockData";
+import { POPULAR_LOCATIONS, VEHICLE_FLEET, MOCK_ACTIVE_DRIVER } from "@/data/mockData";
 
 export interface OrderDraft {
   pickupAreaId: string;
@@ -14,7 +14,7 @@ export interface OrderDraft {
   scheduledDate: string;
   scheduledTime: string;
   vehicleId: "motor-roda3" | "pikap-bak" | "pikap-box";
-  helperCount: number; // 1 (included) or 2
+  helperCount: number;
   inventory: Record<string, number>;
   hasInsurance: boolean;
   driverNotes: string;
@@ -57,23 +57,9 @@ export interface ActiveOrder {
   reviewComment?: string;
 }
 
-export interface SUSSavedSession {
-  id: string;
-  respondentName: string;
-  campusCohort: string;
-  completedTasks: boolean[];
-  answers: Record<number, number>;
-  susScore: number;
-  grade: string;
-  adjective: string;
-  feedback: string;
-  date: string;
-}
-
 interface PindahStore {
   draft: OrderDraft;
   activeOrders: ActiveOrder[];
-  susSessions: SUSSavedSession[];
 
   // Draft actions
   setDraftField: <K extends keyof OrderDraft>(field: K, value: OrderDraft[K]) => void;
@@ -89,10 +75,6 @@ interface PindahStore {
   updatePaymentStatus: (orderId: string, status: "paid" | "unpaid") => void;
   advanceOrderStatus: (orderId: string) => OrderStatus;
   submitOrderRating: (orderId: string, rating: number, comment?: string) => void;
-
-  // SUS actions
-  saveSUSSession: (session: Omit<SUSSavedSession, "id" | "date">) => void;
-  deleteSUSSession: (id: string) => void;
 }
 
 const DEFAULT_DRAFT: OrderDraft = {
@@ -150,20 +132,6 @@ export const usePindahStore = create<PindahStore>()(
           driverInfo: MOCK_ACTIVE_DRIVER,
         },
       ],
-      susSessions: [
-        {
-          id: "sus-sample-1",
-          respondentName: "Maulidina Naurah",
-          campusCohort: "D4 TI UNAIR 2024",
-          completedTasks: [true, true, true, true, true],
-          answers: { 1: 5, 2: 1, 3: 5, 4: 1, 5: 5, 6: 2, 7: 5, 8: 1, 9: 5, 10: 1 },
-          susScore: 92.5,
-          grade: "A+",
-          adjective: "Best Imaginable",
-          feedback: "Kalkulator harganya transparan banget dan link ke orang tua sangat membantu!",
-          date: "13 Nov 2026",
-        },
-      ],
 
       setDraftField: (field, value) =>
         set((state) => ({
@@ -191,7 +159,6 @@ export const usePindahStore = create<PindahStore>()(
         const d = customDraft || get().draft;
         const vehicle = VEHICLE_FLEET.find((v) => v.id === d.vehicleId) || VEHICLE_FLEET[0];
 
-        // Estimated distance
         const pickupLoc = POPULAR_LOCATIONS.find((l) => l.id === d.pickupAreaId);
         const delivLoc = POPULAR_LOCATIONS.find((l) => l.id === d.deliveryAreaId);
         let distanceKm = 7.5;
@@ -204,11 +171,8 @@ export const usePindahStore = create<PindahStore>()(
 
         const baseVehiclePrice = vehicle.basePrice;
         const distanceFee = distanceKm * vehicle.pricePerKm;
-
-        // 1st helper included (Rp 0), 2nd helper +Rp 35.000
         const helperFee = d.helperCount > 1 ? 35000 : 0;
 
-        // Floor fee (only if no lift)
         let floorFee = 0;
         if (!d.pickupHasLift && d.pickupFloor > 1) {
           if (d.pickupFloor === 2) floorFee += 15000;
@@ -222,12 +186,10 @@ export const usePindahStore = create<PindahStore>()(
         }
 
         const protectionFee = d.hasInsurance ? 10000 : 0;
-        // Student promo voucher to calibrate around target Rp 150.000
         const subtotal = baseVehiclePrice + distanceFee + helperFee + floorFee + protectionFee;
         const discountPromo = subtotal > 150000 ? -Math.min(subtotal - 150000, 25000) : 0;
         const totalAmount = Math.max(75000, subtotal + discountPromo);
 
-        // 20% platform commission, 80% partner share (BAB IV BMC Pindah.in)
         const platformShare = Math.round(totalAmount * 0.2);
         const mitraShare = totalAmount - platformShare;
 
@@ -319,27 +281,9 @@ export const usePindahStore = create<PindahStore>()(
           activeOrders: state.activeOrders.map((o) => (o.id === orderId ? { ...o, rating, reviewComment } : o)),
         }));
       },
-
-      saveSUSSession: (sessionData) => {
-        const newSession: SUSSavedSession = {
-          ...sessionData,
-          id: `sus-${Date.now()}`,
-          date: new Date().toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" }),
-        };
-        set((state) => ({
-          susSessions: [newSession, ...state.susSessions],
-        }));
-      },
-
-      deleteSUSSession: (id) => {
-        set((state) => ({
-          susSessions: state.susSessions.filter((s) => s.id !== id),
-        }));
-      },
     }),
     {
       name: "pindahin_storage_v1",
     }
   )
 );
-

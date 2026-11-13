@@ -51,13 +51,13 @@ export default function HeroSection() {
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
-          <Link href="/uji-pengguna" className="w-full sm:w-auto">
+          <Link href="/mitra-preview" className="w-full sm:w-auto">
             <Button
               variant="outline"
               size="lg"
               className="w-full sm:w-auto text-sm sm:text-base px-8 py-4 border-surface-300 text-surface-800 hover:bg-surface-100"
             >
-              Uji Coba Sistem (SUS UAS)
+              Lihat Portal Mitra (80:20)
             </Button>
           </Link>
         </div>

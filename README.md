@@ -37,8 +37,6 @@ Platform **Pindah.in** hadir sebagai solusi berbasis teknologi web mobile-first 
    - Dilengkapi **Demo Simulation Controller** (tombol maju cepat status) untuk kebutuhan demonstrasi 3–4 menit di hadapan dosen penguji UAS.
 6. **Preview Portal Mitra (Ekosistem 80:20)** (`/mitra-preview`):
    - Memvalidasi pembagian hak mitra 80% (Rp 120.000) vs margin platform 20% (Rp 30.000) dari standar transaksi Rp 150.000 (sesuai Bab IV BMC).
-7. **Suite Pengujian Pengguna & Kalkulator SUS** (`/uji-pengguna`):
-   - Panduan 5 skenario tugas, kuesioner baku 10 pertanyaan *System Usability Scale* (John Brooke), kalkulasi skor otomatis (0–100), dan fitur salin laporan untuk pemenuhan berkas UAS $\ge$ 5 responden target.
 
 ---
 
