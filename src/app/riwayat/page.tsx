@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Truck, MapPin, ChevronRight, FileText, Plus } from "lucide-react";
+import { Truck, MapPin, ChevronRight, Plus, Compass } from "lucide-react";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
@@ -109,17 +109,11 @@ export default function OrderHistoryPage() {
                     </div>
 
                     <div className="flex items-center gap-2.5">
-                      <Link href={`/invoice/${order.id}`}>
-                        <button className="h-9 px-3.5 rounded-xl border border-surface-200 bg-surface-50 text-surface-800 text-xs font-bold hover:bg-surface-100 transition flex items-center gap-1.5">
-                          <FileText className="h-3.5 w-3.5" />
-                          <span>Invoice</span>
-                        </button>
-                      </Link>
-
                       <Link href={`/tracking/${order.id}`}>
-                        <Button size="sm" className="text-xs px-4 py-2">
-                          <span>Live Tracking</span>
-                          <ChevronRight className="h-3.5 w-3.5 ml-1" />
+                        <Button size="sm" className="text-xs px-4 py-2 font-bold flex items-center gap-1.5">
+                          <Compass className="h-3.5 w-3.5" />
+                          <span>Lacak Perjalanan</span>
+                          <ChevronRight className="h-3.5 w-3.5" />
                         </Button>
                       </Link>
                     </div>

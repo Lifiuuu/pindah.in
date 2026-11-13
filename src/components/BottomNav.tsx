@@ -7,8 +7,8 @@ import MitraBottomNav from "./layout/MitraBottomNav";
 export default function BottomNav() {
   const pathname = usePathname();
 
-  // Hide bottom nav completely on Invoice and Admin pages
-  if (pathname.startsWith("/invoice") || pathname.startsWith("/admin")) {
+  // Hide bottom nav on Admin pages
+  if (pathname.startsWith("/admin")) {
     return null;
   }
 
