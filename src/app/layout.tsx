@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="h-full antialiased scroll-smooth">
-      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900 pb-10 md:pb-8 font-sans selection:bg-brand-600 selection:text-white">
+      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900 font-sans selection:bg-brand-600 selection:text-white">
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <DemoRoleSwitcher />
