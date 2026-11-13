@@ -9,7 +9,6 @@ import {
   QrCode,
   Copy,
   Check,
-  ArrowRight,
   Share2,
   Truck,
   MapPin,
@@ -280,7 +279,6 @@ export default function OrderConfirmationPage() {
             >
               <Sparkles className="h-4 w-4" />
               <span>Simulasi Pembayaran Berhasil (Uji Demo)</span>
-              <ArrowRight className="h-4 w-4" />
             </Button>
             <span className="text-[11px] text-surface-400 block mt-2">
               Klik tombol di atas untuk simulasi jika QRIS telah selesai dibayar

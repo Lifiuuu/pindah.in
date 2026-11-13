@@ -11,7 +11,6 @@ import {
   Menu,
   X,
   Calculator,
-  ArrowRight,
   ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -228,10 +227,9 @@ export default function CustomerNavbar() {
               <Link
                 href="/pesan"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl bg-brand-600 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-brand-700/25 hover:bg-brand-700 active:scale-98 transition"
+                className="w-full flex items-center justify-center rounded-2xl bg-brand-600 px-5 py-3.5 text-sm font-bold text-white shadow-md shadow-brand-700/25 hover:bg-brand-700 active:scale-98 transition"
               >
                 <span>Pesan Pindahan Sekarang</span>
-                <ArrowRight className="h-4 w-4" />
               </Link>
 
               <div className="flex items-center justify-center gap-2 text-[11px] text-surface-500 pt-1">

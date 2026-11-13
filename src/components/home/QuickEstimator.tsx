@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Calculator, MapPin, ArrowRight, Truck, CheckCircle2 } from "lucide-react";
+import { Calculator, MapPin, Truck, CheckCircle2 } from "lucide-react";
 import { POPULAR_LOCATIONS, VEHICLE_FLEET } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
@@ -156,7 +156,6 @@ export default function QuickEstimator() {
             className="w-full sm:w-auto text-xs sm:text-sm px-7 py-3.5 shadow-sm active:scale-98 transition shrink-0"
           >
             <span>Pesan Sekarang</span>
-            <ArrowRight className="h-4 w-4 ml-1.5" />
           </Button>
           </div>
         </div>

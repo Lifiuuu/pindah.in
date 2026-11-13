@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Users, Clock, CheckCircle2, ArrowRight } from "lucide-react";
+import { Users, Clock, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function HeroSection() {
@@ -51,7 +51,6 @@ export default function HeroSection() {
           <Link href="/pesan" className="w-full sm:w-auto">
             <Button size="lg" className="w-full sm:w-auto text-xs sm:text-sm px-6 py-3 sm:px-8 sm:py-3.5">
               Pesan Pindahan Sekarang
-              <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
           <Button

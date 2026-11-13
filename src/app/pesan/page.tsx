@@ -9,7 +9,6 @@ import {
   Users,
   Package,
   ShieldCheck,
-  ArrowRight,
   ArrowLeft,
   CheckCircle2,
   Plus,
@@ -705,7 +704,6 @@ export default function OrderPage() {
 
               <Button onClick={handleNext} size="md" className="text-xs sm:text-sm px-6 py-3">
                 {currentStep === 4 ? "Lanjut Pembayaran" : "Langkah Berikutnya"}
-                <ArrowRight className="h-4 w-4 ml-1.5" />
               </Button>
             </div>
           </div>

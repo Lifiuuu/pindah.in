@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowRight, Weight, Box, Users, Truck, ShieldCheck, Compass } from "lucide-react";
+import { Weight, Box, Users, Truck, ShieldCheck, Compass } from "lucide-react";
 import { VEHICLE_FLEET } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
@@ -114,7 +114,6 @@ export default function FleetSection() {
                   className="w-full text-xs sm:text-sm py-3"
                 >
                   Pilih Armada Ini
-                  <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </div>
             </div>
