@@ -78,38 +78,35 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Col 4: Pengelola & Evaluasi Bisnis UAS */}
+            {/* Col 4: Pengelola & Pusat Operasional */}
             <div className="space-y-2.5">
               <strong className="text-surface-200 font-bold block uppercase tracking-wider text-[11px] flex items-center gap-1.5">
                 <BarChart3 className="h-3.5 w-3.5 text-accent-400" />
-                Manajemen Bisnis
+                Pusat Operasional
               </strong>
               <ul className="space-y-1.5 text-surface-400">
                 <li>
                   <Link href="/admin" className="text-accent-300 font-semibold hover:text-white transition">
-                    Dashboard Admin & BEP →
+                    Dashboard Operasional →
                   </Link>
                 </li>
                 <li>
-                  <span className="text-surface-400 text-[11px] block">Validasi BEP 67 Transaksi / Bulan</span>
+                  <span className="text-surface-400 text-[11px] block">Monitoring Unit Economics (Asset-Light)</span>
                 </li>
                 <li>
-                  <span className="text-surface-400 text-[11px] block">Monitoring Armada Surabaya</span>
+                  <span className="text-surface-400 text-[11px] block">Operasional Wilayah Surabaya</span>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Academic Attribution */}
-          <div className="text-center space-y-1.5 text-surface-400 text-xs">
-            <p className="font-bold text-surface-200">
-              Proyek Akhir Mata Kuliah Kewirausahaan Bidang TI (FVK25612002)
+          {/* Clean Startup Copyright */}
+          <div className="text-center space-y-1 text-surface-400 text-xs border-t border-surface-800 pt-6">
+            <p className="font-semibold text-surface-200">
+              © 2026 Pindah.in Surabaya. Platform Logistik Pindahan Kos Mahasiswa.
             </p>
-            <p className="text-[11px] text-surface-400">
-              D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga · Dosen Pengampu: Nambi Sembilu, S.Kom., M.Kom.
-            </p>
-            <p className="text-[10px] text-surface-500 pt-2 border-t border-surface-800">
-              Kelompok 4: Putri Atika · Faatin Sausan · Maulidina Naurah · Alifia Putri · Reta Hadiana
+            <p className="text-[11px] text-surface-500">
+              Menghadirkan tarif transparan, armada terpercaya, dan tenaga helper door-to-door.
             </p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 # Pindah.in
 
 > **Platform Logistik Pindahan Kos Mahasiswa Terintegrasi Surabaya**  
-> Proyek Akhir Mata Kuliah Kewirausahaan Bidang TI (FVK25612002) · Program Studi D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga.
+> Solusi cerdas sewa armada pikap dengan tarif transparan dan tenaga angkut door-to-door.
 
 [![Pindah.in CI Pipeline](https://github.com/Lifiuuu/pindah.in/actions/workflows/ci.yml/badge.svg)](https://github.com/Lifiuuu/pindah.in/actions)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
@@ -119,14 +119,6 @@ Aplikasi ini telah dikonfigurasi dengan `vercel.json` dan siap di-deploy langsun
 
 ---
 
-## Pengembang & Tim Proyek (Kelompok 4)
+## Lisensi & Hak Cipta
 
-- **Mata Kuliah**: Kewirausahaan Bidang TI (FVK25612002)
-- **Program Studi**: D4 Teknik Informatika Fakultas Vokasi Universitas Airlangga
-- **Dosen Pengampu**: Nambi Sembilu, S.Kom., M.Kom.
-- **Anggota Kelompok**:
-  1. Putri Atika Mahardika
-  2. Faatin Sausan Firdaus
-  3. Maulidina Naurah
-  4. Alifia Putri
-  5. Reta Hadiana
+© 2026 Pindah.in Surabaya. Seluruh hak cipta dilindungi. Platform logistik pindahan kos mahasiswa.

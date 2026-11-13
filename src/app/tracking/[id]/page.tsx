@@ -320,8 +320,8 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
           <Link href="/riwayat" className="hover:text-brand-700 font-bold">
             ← Kembali ke Riwayat Pesanan
           </Link>
-          <Link href="/mitra-preview" className="text-brand-700 font-bold hover:underline">
-            Lihat Sisi Driver (Bagi Hasil 80:20) →
+          <Link href="/" className="hover:text-brand-700 font-bold">
+            Kembali ke Beranda
           </Link>
         </div>
 

@@ -99,7 +99,7 @@ const DEFAULT_DRAFT: OrderDraft = {
   },
   hasInsurance: true,
   driverNotes: "Akses lorong kos muat motor roda 3 dan mobil pikap. Tolong dibantu angkat kasur dari lt 2.",
-  customerName: "Putri Atika M.",
+  customerName: "Nadira Safitri",
   customerPhone: "0812-3456-7890",
   payerName: "Orang Tua / Mandiri",
 };

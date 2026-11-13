@@ -42,7 +42,7 @@ export default function AdminDashboardPage() {
   const activeSurabayaOrders = [
     {
       id: "PNDH-98214",
-      customer: "Putri Atika M.",
+      customer: "Nadira Safitri",
       campus: "UNAIR Kampus C → Kampus B",
       status: "Dalam Perjalanan Pikap",
       driver: "Pak Joko Slamet (Gran Max L 1832 AB)",
@@ -62,7 +62,7 @@ export default function AdminDashboardPage() {
     },
     {
       id: "PNDH-98199",
-      customer: "Faatin Sausan F.",
+      customer: "Bima Pratama",
       campus: "Tambaksari (Kampus A) → Gubeng Kertajaya",
       status: "Selesai & Dinilai (Rating 5.0)",
       driver: "Pak Bambang Wijaya (Viar L 4190 XY)",
@@ -142,9 +142,9 @@ export default function AdminDashboardPage() {
 
           <div className="flex flex-col gap-2.5">
             <div className="rounded-2xl bg-surface-800 border border-surface-700 p-4 text-xs space-y-1">
-              <span className="text-surface-400 block text-[11px]">Akademik Pengujian:</span>
-              <strong className="text-white block font-bold">D4 Teknik Informatika Vokasi UNAIR</strong>
-              <span className="text-accent-300 text-[11px] block">Mata Kuliah Kewirausahaan Bidang TI</span>
+              <span className="text-surface-400 block text-[11px]">Cakupan Operasional:</span>
+              <strong className="text-white block font-bold">Surabaya Timur & Pusat</strong>
+              <span className="text-accent-300 text-[11px] block">Zona Kampus Terintegrasi</span>
             </div>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function AdminDashboardPage() {
                   Kalkulasi Titik Impas (Break-Even Point / BEP) Pindah.in
                 </h3>
                 <p className="text-xs text-surface-500 mt-1 leading-relaxed">
-                  Berdasarkan Bab IV Rancangan Usaha Mahasiswa Vokasi UNAIR: Platform logistik berbasis komisi 20% tanpa aset kendaraan fisik (*asset-light model*).
+                  Berdasarkan kalkulasi operasional bisnis logistik mahasiswa: Platform berbasis komisi 20% tanpa aset kendaraan fisik (*asset-light model*).
                 </p>
               </div>
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "sewa pikap unair",
     "logistik mahasiswa",
     "helper angkut kos",
-    "kewirausahaan ti vokasi unair",
+    "sewa pikap surabaya",
   ],
 };
 

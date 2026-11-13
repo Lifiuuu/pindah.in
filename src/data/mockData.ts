@@ -143,10 +143,10 @@ export const INVENTORY_ITEMS: InventoryItem[] = [
 export const MOCK_TESTIMONIALS: Testimonial[] = [
   {
     id: "testi-1",
-    name: "Putri Atika Mahardika",
-    initials: "PA",
-    major: "D4 Teknik Informatika",
-    campus: "Vokasi UNAIR 2024",
+    name: "Nadira Safitri",
+    initials: "NS",
+    major: "Sains Data",
+    campus: "UNAIR Kampus C",
     rating: 5,
     comment:
       "Pindah dari Sutorejo ke Dharmawangsa sangat tertata. Tidak ada tawar-menawar sepihak, estimasi biaya jelas sejak awal di aplikasi.",
@@ -154,9 +154,9 @@ export const MOCK_TESTIMONIALS: Testimonial[] = [
   },
   {
     id: "testi-2",
-    name: "Faatin Sausan Firdaus",
-    initials: "FS",
-    major: "Fakultas Kedokteran Gigi",
+    name: "Siti Nurhaliza",
+    initials: "SN",
+    major: "Kedokteran Gigi",
     campus: "UNAIR Kampus A",
     rating: 5,
     comment:
@@ -168,10 +168,10 @@ export const MOCK_TESTIMONIALS: Testimonial[] = [
     name: "Rizky Bima Aditya",
     initials: "RB",
     major: "Sistem Informasi",
-    campus: "FST UNAIR Kampus C",
+    campus: "UNAIR Kampus B",
     rating: 5,
     comment:
-      "Fitur pengiriman tautan invoice ke orang tua sangat praktis. Rincian biaya transparan dan pembayaran QRIS langsung terverifikasi.",
+      "Fitur pembayaran QRIS langsung di layar sangat praktis. Rincian biaya transparan dan armada tiba tepat waktu.",
     date: "04 Nov 2026",
   },
 ];

@@ -164,7 +164,7 @@ export default function MitraPortalPage() {
                     <span className="text-xs font-mono font-bold text-surface-500">ID: PNDH-98214</span>
                   </div>
                   <h2 className="text-lg font-bold text-surface-900 mt-1">
-                    Pindahan Kamar Mahasiswi: Putri Atika M.
+                    Pindahan Kamar: Nadira Safitri
                   </h2>
                 </div>
                 <div className="flex items-center gap-2">
@@ -378,9 +378,9 @@ export default function MitraPortalPage() {
                 </span>
                 <div className="divide-y divide-surface-100 border border-surface-200 rounded-2xl overflow-hidden">
                   {[
-                    { id: "PNDH-98180", date: "Kemarin, 15:30", customer: "Faatin Sausan (FKG)", fee: 120000, route: "Tambaksari → Gubeng" },
-                    { id: "PNDH-98155", date: "12 Nov 2026", customer: "Rizky Bima (FST)", fee: 120000, route: "Sutorejo → Manyar Kertoarjo" },
-                    { id: "PNDH-98112", date: "10 Nov 2026", customer: "Maulidina Naurah", fee: 140000, route: "Kalisari → Wisma Dharmawangsa" },
+                    { id: "PNDH-98180", date: "Kemarin, 15:30", customer: "Bima Pratama", fee: 120000, route: "Tambaksari → Gubeng" },
+                    { id: "PNDH-98155", date: "12 Nov 2026", customer: "Rizky Aditya", fee: 120000, route: "Sutorejo → Manyar Kertoarjo" },
+                    { id: "PNDH-98112", date: "10 Nov 2026", customer: "Clarissa Dewanti", fee: 140000, route: "Kalisari → Wisma Dharmawangsa" },
                   ].map((item) => (
                     <div key={item.id} className="p-4 bg-white flex items-center justify-between text-xs">
                       <div>

@@ -62,25 +62,6 @@ export default function CustomerNavbar() {
 
         {/* Header Right Actions */}
         <div className="flex items-center gap-3">
-          {/* Quick Role Switcher Pill (Discreet for Demo presentation) */}
-          <div className="hidden lg:flex items-center gap-1 bg-surface-100 p-1 rounded-xl border border-surface-200 text-[11px]">
-            <span className="px-2 py-0.5 font-bold text-brand-800 bg-white rounded-lg shadow-2xs">Pelanggan</span>
-            <Link
-              href="/mitra"
-              className="px-2 py-0.5 text-surface-500 hover:text-surface-900 rounded-lg transition"
-              title="Masuk ke Mode Mitra Driver/Helper"
-            >
-              Mitra
-            </Link>
-            <Link
-              href="/admin"
-              className="px-2 py-0.5 text-surface-500 hover:text-surface-900 rounded-lg transition"
-              title="Masuk ke Mode Admin Bisnis"
-            >
-              Admin
-            </Link>
-          </div>
-
           <Link
             href="/pesan"
             className="inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-700 active:scale-95 transition"

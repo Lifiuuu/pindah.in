@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-surface-50 to-surface-50 pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
-        {/* Academic / Problem-solution tag */}
+        {/* Solution tag */}
         <div className="inline-flex items-center gap-2 rounded-full bg-brand-100/80 px-4 py-1.5 text-xs font-bold text-brand-800 mb-6 border border-brand-200">
           <ShieldCheck className="h-4 w-4 text-brand-600" />
           <span>Platform Logistik Pindahan Kos Mahasiswa Surabaya</span>
@@ -43,7 +43,7 @@ export default function HeroSection() {
           </span>
         </div>
 
-        {/* Direct Action Buttons */}
+        {/* Direct Action Buttons (Customer Only) */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/pesan" className="w-full sm:w-auto">
             <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base px-8 py-4">
@@ -51,15 +51,15 @@ export default function HeroSection() {
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
-          <Link href="/mitra-preview" className="w-full sm:w-auto">
+          <a href="#kalkulator" className="w-full sm:w-auto">
             <Button
               variant="outline"
               size="lg"
               className="w-full sm:w-auto text-sm sm:text-base px-8 py-4 border-surface-300 text-surface-800 hover:bg-surface-100"
             >
-              Lihat Portal Mitra (80:20)
+              Cek Estimasi Biaya
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
