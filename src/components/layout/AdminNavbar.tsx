@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BarChart3, ArrowLeft, ShieldCheck, Layers } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 
 export default function AdminNavbar() {
   return (
@@ -22,41 +22,23 @@ export default function AdminNavbar() {
               </span>
             </div>
             <span className="text-[11px] text-surface-400 font-medium hidden sm:inline">
-              Dashboard Validasi Bisnis & Evaluasi UAS TI
+              Dashboard Validasi Bisnis & Operasional Logistik
             </span>
           </div>
         </Link>
 
         {/* Live Metrics Tag */}
-        <div className="hidden lg:flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-2 sm:gap-4 text-xs">
           <div className="flex items-center gap-2 rounded-xl bg-surface-800/80 border border-surface-700 px-3 py-1.5">
             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-surface-300">BEP Target:</span>
+            <span className="text-surface-300 hidden sm:inline">BEP Target:</span>
             <strong className="text-accent-300">48 / 67 Order (71.6%)</strong>
           </div>
 
-          <div className="flex items-center gap-2 rounded-xl bg-surface-800/80 border border-surface-700 px-3 py-1.5">
+          <div className="hidden sm:flex items-center gap-2 rounded-xl bg-surface-800/80 border border-surface-700 px-3 py-1.5">
             <span className="text-surface-300">Komisi Platform:</span>
             <strong className="text-white">20% Net</strong>
           </div>
-        </div>
-
-        {/* Switch to other roles */}
-        <div className="flex items-center gap-2.5">
-          <Link
-            href="/mitra"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-surface-700 bg-surface-800/70 px-3 py-1.5 text-xs font-semibold text-surface-300 hover:text-white hover:bg-surface-800 transition"
-          >
-            <Layers className="h-3.5 w-3.5" />
-            Portal Mitra
-          </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Mode Pelanggan
-          </Link>
         </div>
       </div>
     </header>
