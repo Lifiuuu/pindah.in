@@ -181,7 +181,7 @@ export default function OrderPage() {
                     type="text"
                     value={draft.pickupAddress}
                     onChange={(e) => setDraftField("pickupAddress", e.target.value)}
-                    placeholder="Contoh: Kost Putri Airlangga 2, Jl. Karang Menjangan No. 12, Kamar 204"
+                    placeholder="Contoh: Kost Asri Mahasiswa, Jl. Gebang Timur / Sutorejo No. 18, Kamar 204"
                     className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
                   />
                 </div>

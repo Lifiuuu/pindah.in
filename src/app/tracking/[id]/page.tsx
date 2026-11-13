@@ -171,7 +171,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
             {/* Origin Pin */}
             <div className="absolute left-8 bottom-8 flex flex-col items-center">
               <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
-                Kos Asal (UNAIR C)
+                Kos Asal (Sutorejo)
               </span>
               <div className="h-4 w-4 rounded-full bg-brand-600 ring-4 ring-brand-200 animate-pulse" />
             </div>
@@ -196,7 +196,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
             {/* Destination Pin */}
             <div className="absolute right-8 top-6 flex flex-col items-center">
               <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
-                Kos Baru (UNAIR B)
+                Kos Baru (Dharmawangsa)
               </span>
               <div className="h-4 w-4 rounded-full bg-accent-600 ring-4 ring-accent-200" />
             </div>

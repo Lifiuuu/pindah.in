@@ -13,7 +13,7 @@ export default function TestimonialSection() {
             Pindahan Lebih Efisien dan Terencana
           </h2>
           <p className="text-xs sm:text-sm text-surface-500 max-w-xl mx-auto mt-2 leading-relaxed">
-            Ulasan dari rekan mahasiswa perantau di kawasan kampus Universitas Airlangga Surabaya.
+            Ulasan nyata dari rekan mahasiswa perantau di berbagai kawasan kampus se-Surabaya (UNAIR, ITS, UNESA, UPN, Petra, dll).
           </p>
         </div>
 

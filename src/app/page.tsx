@@ -73,7 +73,7 @@ export default function HomePage() {
                   <span className="text-surface-400 text-[11px] block">Bagi Hasil 80% (Driver Rp 85rb + Helper Rp 35rb)</span>
                 </li>
                 <li>
-                  <span className="text-surface-400 text-[11px] block">Wilayah: Kampus A, B, C UNAIR</span>
+                  <span className="text-surface-400 text-[11px] block">Jangkauan: Seluruh Kawasan Kampus & Kos Surabaya</span>
                 </li>
               </ul>
             </div>

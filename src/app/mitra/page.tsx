@@ -44,8 +44,8 @@ export default function MitraPortalPage() {
   const incomingOrders = [
     {
       id: "PNDH-98220",
-      customer: "Ahmad Rizky (FST UNAIR)",
-      route: "Kost Mulyorejo Baru → Asrama UNAIR Kampus C",
+      customer: "Ahmad Rizky (ITS Sukolilo)",
+      route: "Kost Gebang Wetan → Perumahan Mulyorejo Indah",
       fleet: "Pikap Bak + 1 Helper",
       mitraShare: 120000,
       driverShare: 85000,
@@ -55,8 +55,8 @@ export default function MitraPortalPage() {
     },
     {
       id: "PNDH-98225",
-      customer: "Nabila Zahra (FKG UNAIR)",
-      route: "Jl. Prof. Moestopo → Gubeng Kertajaya VIII",
+      customer: "Nabila Zahra (UNESA Ketintang)",
+      route: "Jl. Ketintang Baru → Siwalankerto (UK Petra)",
       fleet: "Pikap Box + 1 Helper",
       mitraShare: 140000,
       driverShare: 100000,
@@ -88,7 +88,7 @@ export default function MitraPortalPage() {
             </div>
             <h1 className="text-xl sm:text-2xl font-black">Pak Joko Slamet & Mas Dimas</h1>
             <p className="text-xs sm:text-sm text-surface-300">
-              Daihatsu Gran Max (L 1832 AB) · Wilayah Operasi: UNAIR Kampus A, B, C & Sekitarnya
+              Daihatsu Gran Max (L 1832 AB) · Wilayah Operasi: Seluruh Kawasan Kampus & Kos Mahasiswa Surabaya
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function MitraPortalPage() {
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold text-surface-400 uppercase tracking-wider">Titik Muat:</span>
                   <p className="font-bold text-surface-900">Kost Sutorejo Prima No. 18 (Kamar 204, Lantai 2)</p>
-                  <p className="text-surface-500">Mulyorejo, Surabaya Timur · Dekat Kampus C UNAIR</p>
+                  <p className="text-surface-500">Mulyorejo, Surabaya Timur · Kawasan Sutorejo</p>
                   <p className="text-brand-700 font-semibold pt-1">
                     Catatan: Helper angkat kasur & meja lewat tangga lorong belakang
                   </p>
@@ -231,7 +231,7 @@ export default function MitraPortalPage() {
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold text-surface-400 uppercase tracking-wider">Titik Bongkar:</span>
                   <p className="font-bold text-surface-900">Wisma Mahasiswa Dharmawangsa No. 45 (Lantai 1)</p>
-                  <p className="text-surface-500">Gubeng, Surabaya Timur · Dekat Kampus B UNAIR</p>
+                  <p className="text-surface-500">Gubeng, Surabaya Timur · Kawasan Dharmawangsa</p>
                   <p className="text-emerald-700 font-semibold pt-1">
                     Akses pikap langsung ke depan garasi
                   </p>
@@ -279,7 +279,7 @@ export default function MitraPortalPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-base font-bold text-surface-900">
-                Peluang Order Pindahan Sekitar UNAIR ({incomingOrders.length})
+                Peluang Order Pindahan Sekitar Surabaya ({incomingOrders.length})
               </h2>
               <span className="text-xs text-surface-500">Auto-refresh setiap saat</span>
             </div>

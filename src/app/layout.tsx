@@ -6,14 +6,14 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Pindah.in - Platform Logistik Pindahan Kos Mahasiswa Surabaya",
   description:
-    "Layanan angkut pindahan kos mahasiswa lengkap armada pikap & helper door-to-door, tarif otomatis tanpa tawar-menawar, dan fitur pembayaran ramah orang tua.",
+    "Layanan angkut pindahan kos mahasiswa lengkap armada pikap & helper door-to-door, tarif otomatis tanpa tawar-menawar, dan fitur pembayaran ramah orang tua untuk seluruh mahasiswa di kawasan Surabaya.",
   keywords: [
     "pindahin",
     "pindahan kos surabaya",
-    "sewa pikap unair",
-    "logistik mahasiswa",
-    "helper angkut kos",
     "sewa pikap surabaya",
+    "logistik mahasiswa surabaya",
+    "helper angkut kos surabaya",
+    "pindahan kos unair its unesa upn petra",
   ],
 };
 

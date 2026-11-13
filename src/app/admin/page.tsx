@@ -43,7 +43,7 @@ export default function AdminDashboardPage() {
     {
       id: "PNDH-98214",
       customer: "Nadira Safitri",
-      campus: "UNAIR Kampus C → Kampus B",
+      campus: "Mulyorejo (UNAIR C) → Gubeng (UNAIR B)",
       status: "Dalam Perjalanan Pikap",
       driver: "Pak Joko Slamet (Gran Max L 1832 AB)",
       helper: "Mas Dimas Prasetyo",
@@ -53,22 +53,22 @@ export default function AdminDashboardPage() {
     {
       id: "PNDH-98220",
       customer: "Ahmad Rizky",
-      campus: "Kost Sutorejo → Asrama Kampus C",
+      campus: "Gebang Sukolilo (ITS) → Manyar Kertoarjo",
       status: "Mencari Armada Pikap",
       driver: "Belum Ditugaskan",
       helper: "1 Helper Kos",
-      amount: 150000,
-      platformCut: 30000,
+      amount: 140000,
+      platformCut: 28000,
     },
     {
       id: "PNDH-98199",
       customer: "Bima Pratama",
-      campus: "Tambaksari (Kampus A) → Gubeng Kertajaya",
+      campus: "Ketintang (UNESA) → Rungkut Madya (UPN)",
       status: "Selesai & Dinilai (Rating 5.0)",
       driver: "Pak Bambang Wijaya (Viar L 4190 XY)",
       helper: "Mas Dimas",
-      amount: 120000,
-      platformCut: 24000,
+      amount: 160000,
+      platformCut: 32000,
     },
   ];
 
@@ -324,7 +324,7 @@ export default function AdminDashboardPage() {
                 <h3 className="text-base font-bold text-surface-900">
                   Daftar Pesanan Lapangan di Surabaya
                 </h3>
-                <span className="text-xs text-surface-500">Kawasan UNAIR Kampus A, B, C</span>
+                <span className="text-xs text-surface-500">Seluruh Kawasan Kampus Surabaya (UNAIR, ITS, UNESA, UPN, Petra, dll.)</span>
               </div>
 
               <div className="divide-y divide-surface-100">
