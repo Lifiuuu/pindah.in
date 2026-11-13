@@ -42,7 +42,7 @@ export default function QuickEstimator() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 -mt-8 mb-16">
+    <div id="kalkulator" className="mx-auto max-w-4xl px-4 sm:px-6 -mt-8 mb-16 scroll-mt-24">
       <div className="rounded-3xl border border-surface-200/90 bg-white p-7 sm:p-9 shadow-elevated">
         <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-surface-100">
           <div className="h-10 w-10 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center font-bold">

@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { ShieldCheck, Users, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function HeroSection() {
+  const scrollToCalculator = () => {
+    const el = document.getElementById("kalkulator");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-surface-50 to-surface-50 pt-12 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
@@ -51,15 +60,15 @@ export default function HeroSection() {
               <ArrowRight className="h-4 w-4 ml-1.5" />
             </Button>
           </Link>
-          <a href="#kalkulator" className="w-full sm:w-auto">
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto text-sm sm:text-base px-8 py-4 border-surface-300 text-surface-800 hover:bg-surface-100"
-            >
-              Cek Estimasi Biaya
-            </Button>
-          </a>
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            onClick={scrollToCalculator}
+            className="w-full sm:w-auto text-sm sm:text-base px-8 py-4 border-surface-300 text-surface-800 hover:bg-surface-100"
+          >
+            Cek Estimasi Biaya
+          </Button>
         </div>
       </div>
     </section>

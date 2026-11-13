@@ -52,7 +52,7 @@ export default function HomePage() {
                   <Link href="/riwayat" className="hover:text-white transition">Riwayat Pemesanan</Link>
                 </li>
                 <li>
-                  <Link href="/pesan" className="hover:text-white transition">Kalkulator Estimasi Biaya</Link>
+                  <a href="#kalkulator" className="hover:text-white transition">Kalkulator Estimasi Biaya</a>
                 </li>
               </ul>
             </div>
