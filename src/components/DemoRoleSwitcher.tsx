@@ -23,8 +23,6 @@ export default function DemoRoleSwitcher() {
   const dragStartPointerRef = useRef({ x: 0, y: 0 });
   const dragStartElementRef = useRef({ x: 0, y: 0 });
   const hasDraggedRef = useRef(false);
-  const lastClickTimeRef = useRef(0);
-  const clickCountRef = useRef(0);
 
   // Determine current active role
   const currentRole = pathname.startsWith("/mitra")
@@ -163,17 +161,6 @@ export default function DemoRoleSwitcher() {
     // Only allow primary pointer button (left click on mouse)
     if (e.button !== 0) return;
 
-    const isMouse = e.pointerType === "mouse";
-    const now = Date.now();
-
-    // Track click count for double-click detection (within 350ms)
-    if (now - lastClickTimeRef.current < 350) {
-      clickCountRef.current += 1;
-    } else {
-      clickCountRef.current = 1;
-    }
-    lastClickTimeRef.current = now;
-
     isPointerDownRef.current = true;
     hasDraggedRef.current = false;
     dragStartPointerRef.current = { x: e.clientX, y: e.clientY };
@@ -188,19 +175,11 @@ export default function DemoRoleSwitcher() {
     // Safety check 1: MUST be pressed down
     if (!isPointerDownRef.current) return;
 
-    const isMouse = e.pointerType === "mouse";
-
     // Safety check 2: For mouse, left button MUST be physically pressed (buttons === 1)
-    if (isMouse && e.buttons !== 1) {
+    if (e.pointerType === "mouse" && e.buttons !== 1) {
       isPointerDownRef.current = false;
       setIsDragging(false);
       setDragPos(null);
-      return;
-    }
-
-    // Safety check 3: On desktop, dragging requires double-click
-    // Single click on desktop NEVER drags and NEVER sticks to cursor!
-    if (isMouse && clickCountRef.current < 2) {
       return;
     }
 
@@ -235,10 +214,8 @@ export default function DemoRoleSwitcher() {
     isPointerDownRef.current = false;
 
     try {
-      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      (containerRef.current as HTMLElement)?.releasePointerCapture(e.pointerId);
     } catch {}
-
-    const isMouse = e.pointerType === "mouse";
 
     if (hasDraggedRef.current) {
       setIsDragging(false);
@@ -276,21 +253,9 @@ export default function DemoRoleSwitcher() {
       setIsDragging(false);
       setDragPos(null);
 
-      // On desktop: double-click without drag toggles side (Left <-> Right)
-      if (isMouse && clickCountRef.current >= 2) {
-        const newSide = side === "right" ? "left" : "right";
-        setSide(newSide);
-        try {
-          localStorage.setItem(
-            "pindahin_demo_role_pos",
-            JSON.stringify({ side: newSide, y })
-          );
-        } catch {}
-      } else {
-        // Single click: expand if collapsed
-        if (!isExpanded) {
-          expandSwitcher();
-        }
+      // Single click: expand if collapsed
+      if (!isExpanded) {
+        expandSwitcher();
       }
     }
   };
@@ -323,8 +288,21 @@ export default function DemoRoleSwitcher() {
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
+      onDoubleClick={(e) => {
+        // Double-click shortcut: quick flip between Left and Right sides
+        const target = e.target as HTMLElement;
+        if (target.closest("a") || target.closest("button.action-btn")) return;
+        const newSide = side === "right" ? "left" : "right";
+        setSide(newSide);
+        try {
+          localStorage.setItem(
+            "pindahin_demo_role_pos",
+            JSON.stringify({ side: newSide, y })
+          );
+        } catch {}
+      }}
       onClick={(e) => {
-        if (!isExpanded && !hasDraggedRef.current && clickCountRef.current < 2) {
+        if (!isExpanded && !hasDraggedRef.current) {
           e.stopPropagation();
           expandSwitcher();
         }
@@ -344,7 +322,7 @@ export default function DemoRoleSwitcher() {
         <div className="flex items-center gap-1.5 bg-surface-900/95 text-white backdrop-blur-md border border-surface-700/80 shadow-2xl rounded-2xl p-1.5 ring-1 ring-black/20 max-w-[calc(100vw-24px)] overflow-x-auto scrollbar-none animate-in fade-in zoom-in-95 duration-150">
           {/* Drag Handle & Side Indicator */}
           <div
-            title="Klik 2x untuk pindah sisi, atau tahan & geser setelah klik 2x"
+            title="Tahan & geser untuk memindahkan posisi (otomatis menempel ke pinggir), atau klik 2x untuk pindah sisi"
             className="flex items-center gap-1 pl-1.5 pr-1 text-[11px] font-bold text-surface-400 cursor-grab active:cursor-grabbing shrink-0"
           >
             <GripVertical className="h-3.5 w-3.5 text-surface-500" />
@@ -400,12 +378,12 @@ export default function DemoRoleSwitcher() {
         <button
           type="button"
           onClick={(e) => {
-            if (clickCountRef.current < 2) {
+            if (!hasDraggedRef.current) {
               e.stopPropagation();
               expandSwitcher();
             }
           }}
-          title="Demo Role Switcher (Klik untuk buka, klik 2x untuk pindah sisi/geser)"
+          title="Demo Role Switcher (Klik untuk buka, tahan & geser ke pinggir layar)"
           className="h-12 w-12 rounded-2xl bg-surface-900/95 text-accent-300 border border-surface-700/90 shadow-2xl flex items-center justify-center hover:bg-surface-800 hover:scale-105 active:scale-95 transition-transform group backdrop-blur-md"
         >
           <Layers className="h-5 w-5 group-hover:rotate-12 transition-transform" />
