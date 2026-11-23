@@ -70,44 +70,83 @@ export default function DemoRoleSwitcher() {
     setPosition({ x: initialX, y: initialY });
   }, []);
 
-  // Ensure widget stays within viewport when toggled (expanded/collapsed) or when window resizes
-  useEffect(() => {
-    const clampToViewport = () => {
-      if (!containerRef.current || !position) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      let newX = position.x;
-      let newY = position.y;
+  // Expand logic: ensures expanded bar stays completely within viewport
+  const expandSwitcher = () => {
+    if (position && typeof window !== "undefined") {
+      const estimatedExpandedWidth = 330;
+      const maxX = Math.max(10, window.innerWidth - estimatedExpandedWidth - 12);
+      let nextX = position.x;
+      let nextY = position.y;
       let adjusted = false;
 
-      if (rect.right > window.innerWidth - 10) {
-        newX = Math.max(10, window.innerWidth - rect.width - 10);
+      if (position.x > maxX) {
+        nextX = maxX;
         adjusted = true;
       }
-      if (rect.left < 10) {
-        newX = 10;
-        adjusted = true;
-      }
-      if (rect.bottom > window.innerHeight - 10) {
-        newY = Math.max(10, window.innerHeight - rect.height - 10);
-        adjusted = true;
-      }
-      if (rect.top < 10) {
-        newY = 10;
+      const maxY = Math.max(10, window.innerHeight - 56 - 12);
+      if (position.y > maxY) {
+        nextY = maxY;
         adjusted = true;
       }
 
       if (adjusted) {
-        setPosition({ x: newX, y: newY });
+        const adjustedPos = { x: nextX, y: nextY };
+        setPosition(adjustedPos);
         try {
-          localStorage.setItem("pindahin_demo_role_pos", JSON.stringify({ x: newX, y: newY }));
+          localStorage.setItem("pindahin_demo_role_pos", JSON.stringify(adjustedPos));
+        } catch {}
+      }
+    }
+    setIsExpanded(true);
+  };
+
+  const collapseSwitcher = () => {
+    setIsExpanded(false);
+  };
+
+  // Close on outside click when expanded
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      document.addEventListener("pointerdown", handleOutsideClick);
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("pointerdown", handleOutsideClick);
+    };
+  }, [isExpanded]);
+
+  // Keep within bounds on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (!containerRef.current || !position) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const maxX = Math.max(10, window.innerWidth - rect.width - 10);
+      const maxY = Math.max(10, window.innerHeight - rect.height - 10);
+
+      const clampedX = Math.min(Math.max(10, position.x), maxX);
+      const clampedY = Math.min(Math.max(10, position.y), maxY);
+
+      if (clampedX !== position.x || clampedY !== position.y) {
+        const nextPos = { x: clampedX, y: clampedY };
+        setPosition(nextPos);
+        try {
+          localStorage.setItem("pindahin_demo_role_pos", JSON.stringify(nextPos));
         } catch {}
       }
     };
 
-    clampToViewport();
-    window.addEventListener("resize", clampToViewport);
-    return () => window.removeEventListener("resize", clampToViewport);
-  }, [isExpanded, position?.x, position?.y]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [position]);
 
   const handlePointerDown = (e: React.PointerEvent) => {
     // If interacting directly with child links or action buttons, don't initiate drag
@@ -135,7 +174,8 @@ export default function DemoRoleSwitcher() {
     const dx = e.clientX - dragStartPointerRef.current.x;
     const dy = e.clientY - dragStartPointerRef.current.y;
 
-    if (Math.hypot(dx, dy) > 4) {
+    // Use 8px threshold to avoid false positives on taps/clicks
+    if (Math.hypot(dx, dy) > 8) {
       hasDraggedRef.current = true;
     }
 
@@ -159,10 +199,21 @@ export default function DemoRoleSwitcher() {
       (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
     } catch {}
 
-    if (hasDraggedRef.current && position) {
-      try {
-        localStorage.setItem("pindahin_demo_role_pos", JSON.stringify(position));
-      } catch {}
+    if (hasDraggedRef.current) {
+      // It was dragged
+      if (position) {
+        try {
+          localStorage.setItem("pindahin_demo_role_pos", JSON.stringify(position));
+        } catch {}
+      }
+      setTimeout(() => {
+        hasDraggedRef.current = false;
+      }, 100);
+    } else {
+      // It was a tap/click!
+      if (!isExpanded) {
+        expandSwitcher();
+      }
     }
   };
 
@@ -183,15 +234,21 @@ export default function DemoRoleSwitcher() {
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
+      onClick={(e) => {
+        if (!isExpanded && !hasDraggedRef.current) {
+          e.stopPropagation();
+          expandSwitcher();
+        }
+      }}
       style={stylePosition}
       className={cn(
         "fixed z-50 select-none font-sans print:hidden",
         position ? "" : "bottom-4 md:bottom-6 right-3 sm:right-6",
-        isDragging ? "cursor-grabbing" : "cursor-grab"
+        isDragging ? "cursor-grabbing" : isExpanded ? "cursor-grab" : "cursor-pointer"
       )}
     >
       {isExpanded ? (
-        <div className="flex items-center gap-1.5 bg-surface-900/95 text-white backdrop-blur-md border border-surface-700/80 shadow-2xl rounded-2xl p-1.5 ring-1 ring-black/20 animate-in fade-in zoom-in-95 duration-150">
+        <div className="flex items-center gap-1.5 bg-surface-900/95 text-white backdrop-blur-md border border-surface-700/80 shadow-2xl rounded-2xl p-1.5 ring-1 ring-black/20 transition-all">
           {/* Drag Handle & Indicator */}
           <div
             title="Tahan & geser untuk memindahkan posisi"
@@ -237,9 +294,7 @@ export default function DemoRoleSwitcher() {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              if (!hasDraggedRef.current) {
-                setIsExpanded(false);
-              }
+              collapseSwitcher();
             }}
             title="Tutup demo role switcher"
             className="action-btn h-7 w-7 rounded-lg text-surface-400 hover:text-white hover:bg-surface-800 flex items-center justify-center transition"
@@ -251,12 +306,11 @@ export default function DemoRoleSwitcher() {
         /* Collapsed Icon Trigger (Default) */
         <button
           type="button"
-          onClick={() => {
-            if (!hasDraggedRef.current) {
-              setIsExpanded(true);
-            }
+          onClick={(e) => {
+            e.stopPropagation();
+            expandSwitcher();
           }}
-          title="Buka Demo Role Switcher (Dapat digeser kemanapun)"
+          title="Buka Demo Role Switcher (Klik untuk buka, tahan & geser untuk pindah)"
           className="h-12 w-12 rounded-2xl bg-surface-900/95 text-accent-300 border border-surface-700/90 shadow-2xl flex items-center justify-center hover:bg-surface-800 hover:scale-105 active:scale-95 transition-transform group backdrop-blur-md"
         >
           <Layers className="h-5 w-5 group-hover:rotate-12 transition-transform" />
