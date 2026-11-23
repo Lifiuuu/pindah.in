@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Weight, Box, Users, Truck, ShieldCheck, Compass } from "lucide-react";
+import { Truck, ShieldCheck, Compass } from "lucide-react";
 import { VEHICLE_FLEET } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
@@ -19,11 +19,11 @@ export default function FleetSection() {
   const getVehicleIcon = (iconType: string) => {
     switch (iconType) {
       case "pickup-box":
-        return <ShieldCheck className="h-7 w-7 text-brand-700" />;
+        return <ShieldCheck className="h-6 w-6 text-brand-700" />;
       case "cargo-trike":
-        return <Compass className="h-7 w-7 text-brand-700" />;
+        return <Compass className="h-6 w-6 text-brand-700" />;
       default:
-        return <Truck className="h-7 w-7 text-brand-700" />;
+        return <Truck className="h-6 w-6 text-brand-700" />;
     }
   };
 
@@ -31,89 +31,64 @@ export default function FleetSection() {
     <section className="py-10 sm:py-16 px-4 sm:px-6 bg-surface-50">
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="text-[11px] sm:text-xs font-bold text-brand-700 uppercase tracking-widest bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-200">
-            Katalog Armada
-          </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-surface-950 mt-3 leading-tight">
-            Armada Logistik Sesuai Kebutuhan Kos
+          <h2 className="text-xl sm:text-3xl font-extrabold text-surface-950 leading-tight">
+            Pilihan Armada Sesuai Kebutuhan
           </h2>
-          <p className="text-xs sm:text-sm text-surface-500 max-w-xl mx-auto mt-2 leading-relaxed">
-            Mulai dari akses lorong sempit hingga kapasitas penuh satu kamar bertingkat, armada kami terverifikasi dan bersih.
+          <p className="text-xs sm:text-sm text-surface-500 max-w-md mx-auto mt-2 leading-relaxed">
+            Semua armada sudah termasuk 1 supir dan 1 tenaga helper door-to-door.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {VEHICLE_FLEET.map((v) => (
             <div
               key={v.id}
-              className={`rounded-2xl sm:rounded-3xl border bg-white p-5 sm:p-7 shadow-subtle hover:shadow-card transition flex flex-col justify-between relative ${
+              className={`rounded-2xl border bg-white p-5 sm:p-6 shadow-subtle hover:shadow-card transition flex flex-col justify-between relative ${
                 v.id === "pikap-bak"
-                  ? "border-brand-600 ring-2 ring-brand-500/20"
-                  : "border-surface-200/90"
+                  ? "border-brand-500 ring-2 ring-brand-500/15"
+                  : "border-surface-200/80"
               }`}
             >
               {v.badge && (
-                <span
-                  className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full text-[11px] font-bold shadow-sm ${
-                    v.id === "pikap-bak" ? "bg-brand-700 text-white" : "bg-surface-800 text-white"
-                  }`}
-                >
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-bold bg-brand-700 text-white shadow-xs">
                   {v.badge}
                 </span>
               )}
 
               <div>
-                <div className="flex justify-center mb-5 mt-2">
-                  <div className="h-16 w-16 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center shadow-xs">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="h-12 w-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center shrink-0">
                     {getVehicleIcon(v.iconType)}
                   </div>
-                </div>
-
-                <h3 className="text-lg sm:text-xl font-bold text-surface-900 text-center">{v.name}</h3>
-                <p className="text-xs text-surface-500 text-center mb-5 mt-1">{v.subtitle}</p>
-
-                <div className="rounded-2xl bg-surface-50 p-4 mb-5 space-y-3 text-xs">
-                  <div className="flex items-center justify-between text-surface-600">
-                    <span className="flex items-center gap-2">
-                      <Weight className="h-4 w-4 text-brand-600" />
-                      Kapasitas Muatan
-                    </span>
-                    <span className="font-bold text-surface-900">{v.capacityKg} kg</span>
-                  </div>
-                  <div className="flex items-center justify-between text-surface-600">
-                    <span className="flex items-center gap-2">
-                      <Box className="h-4 w-4 text-brand-600" />
-                      Volume Ruang
-                    </span>
-                    <span className="font-bold text-surface-900">± {v.volumeM3} m³</span>
-                  </div>
-                  <div className="flex items-center justify-between text-surface-600">
-                    <span className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-brand-600" />
-                      Tenaga Helper
-                    </span>
-                    <span className="font-bold text-brand-700">1 Orang (Termasuk)</span>
+                  <div>
+                    <h3 className="text-base font-bold text-surface-900">{v.name}</h3>
+                    <p className="text-xs text-surface-500">{v.subtitle}</p>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-surface-600 mb-6 leading-relaxed">{v.description}</p>
+                {/* Inline clean specs */}
+                <div className="flex items-center gap-2 text-[11px] text-surface-600 my-3 flex-wrap">
+                  <span className="bg-surface-100 px-2.5 py-1 rounded-md font-medium">Muatan {v.capacityKg} kg</span>
+                  <span className="bg-surface-100 px-2.5 py-1 rounded-md font-medium">Vol ± {v.volumeM3} m³</span>
+                  <span className="bg-brand-50 text-brand-800 px-2.5 py-1 rounded-md font-semibold">1 Helper</span>
+                </div>
+
+                <p className="text-xs text-surface-600 mb-4 leading-relaxed line-clamp-2">{v.description}</p>
               </div>
 
-              <div className="pt-5 border-t border-surface-100">
-                <div className="mb-4">
-                  <span className="text-[10px] text-surface-400 uppercase font-bold tracking-wider block">Tarif Mulai</span>
-                  <div className="flex items-baseline gap-1.5 mt-0.5">
-                    <span className="text-2xl font-black text-surface-900">{formatRupiah(v.basePrice)}</span>
-                    <span className="text-xs text-surface-500 font-medium">/ 3 km pertama</span>
-                  </div>
+              <div className="pt-4 border-t border-surface-100 flex items-center justify-between gap-3">
+                <div>
+                  <span className="text-[10px] text-surface-400 block font-medium">Mulai dari</span>
+                  <span className="text-lg sm:text-xl font-black text-surface-900">{formatRupiah(v.basePrice)}</span>
                 </div>
 
                 <Button
                   onClick={() => handleSelectFleet(v.id)}
                   variant={v.id === "pikap-bak" ? "primary" : "outline"}
-                  className="w-full text-xs sm:text-sm py-3"
+                  size="sm"
+                  className="text-xs px-4 py-2"
                 >
-                  Pilih Armada Ini
+                  Pilih Armada
                 </Button>
               </div>
             </div>

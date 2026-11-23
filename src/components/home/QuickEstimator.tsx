@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Calculator, MapPin, Truck, CheckCircle2 } from "lucide-react";
+import { Calculator, MapPin, Truck } from "lucide-react";
 import { POPULAR_LOCATIONS, VEHICLE_FLEET } from "@/data/mockData";
 import { usePindahStore } from "@/store/usePindahStore";
 import { formatRupiah } from "@/lib/utils";
@@ -116,37 +116,16 @@ export default function QuickEstimator() {
           </div>
         </div>
 
-        {/* Live Estimation Result Bar (Mobile & Tablet Optimized) */}
-        <div className="mt-6 sm:mt-7 rounded-2xl bg-surface-50 p-4 sm:p-6 border border-surface-200/90 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6">
-          <div className="space-y-3">
-            {/* Meta chips: Jarak & Helper */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1 text-xs font-bold text-surface-800 border border-surface-200 shadow-2xs">
-                <span className="text-surface-500 font-medium">Jarak:</span>
-                <span>± {estimatedKm} km</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 rounded-lg bg-brand-100/90 px-2.5 py-1 text-xs font-semibold text-brand-900 border border-brand-200">
-                <CheckCircle2 className="h-3.5 w-3.5 text-brand-700 shrink-0" />
-                <span>Termasuk 1 Helper</span>
-              </div>
+        {/* Clean Live Estimation Result */}
+        <div className="mt-6 sm:mt-7 rounded-2xl bg-surface-50 p-4 sm:p-6 border border-surface-200/90 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs text-surface-500 mb-1">
+              <span>± {estimatedKm} km</span>
+              <span>•</span>
+              <span className="text-brand-700 font-semibold">Termasuk 1 Helper</span>
             </div>
-
-            {/* Price display with clean typography on mobile/tab */}
-            <div>
-              <div className="text-[11px] sm:text-xs font-semibold text-surface-500 uppercase tracking-wider mb-1">
-                Perkiraan Tarif Total
-              </div>
-              <div className="flex items-baseline gap-2.5 flex-wrap">
-                <span className="text-2xl sm:text-3xl font-extrabold text-brand-700 tracking-tight">
-                  {formatRupiah(estimatedTotal)}
-                </span>
-                <span className="text-xs sm:text-sm text-surface-400 line-through">
-                  {formatRupiah(estimatedTotal + 25000)}
-                </span>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
-                  Tarif Pasti
-                </span>
-              </div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-brand-700 tracking-tight">
+              {formatRupiah(estimatedTotal)}
             </div>
           </div>
 
@@ -157,7 +136,7 @@ export default function QuickEstimator() {
           >
             <span>Pesan Sekarang</span>
           </Button>
-          </div>
+        </div>
         </div>
       </div>
     </section>

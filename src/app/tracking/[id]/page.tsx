@@ -1,22 +1,22 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState, use } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti";
 import {
   Truck,
-  Users,
-  Phone,
-  MessageCircle,
   MapPin,
   Clock,
   CheckCircle2,
-  Sparkles,
+  Phone,
+  MessageCircle,
   Star,
-  RefreshCw,
+  Users,
   Navigation,
+  RefreshCw,
+  Sparkles,
 } from "lucide-react";
-import { usePindahStore, OrderStatus } from "@/store/usePindahStore";
+import { OrderStatus, usePindahStore } from "@/store/usePindahStore";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 
@@ -35,38 +35,38 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
   const trackingSteps = [
     {
       id: "searching_driver",
-      title: "Mencari Mitra Driver",
+      title: "Mencari Driver",
       desc: "Menghubungkan dengan pengemudi pikap terdekat di area kampus",
       icon: RefreshCw,
       eta: "1-2 Menit",
     },
     {
       id: "driver_assigned",
-      title: "Driver & Helper Menuju Kos Asal",
-      desc: "Armada bergerak menuju lokasi penjemputanmu",
+      title: "Driver Menuju Kos Asal",
+      desc: "Armada bergerak menuju lokasi penjemputan",
       icon: Navigation,
-      eta: "Tiba dalam 10 Menit",
+      eta: "10 Menit",
     },
     {
       id: "loading",
-      title: "Loading Barang dari Kamar",
-      desc: "Helper sedang mengangkat kasur & kardus dari lorong kamarmu ke pikap",
+      title: "Muat Barang dari Kamar",
+      desc: "Helper membantu angkut barang kos ke armada pikap",
       icon: Users,
-      eta: "Estimasi 25 Menit",
+      eta: "25 Menit",
     },
     {
       id: "in_transit",
-      title: "Dalam Perjalanan ke Kos Baru",
-      desc: "Armada melaju aman melintasi jalanan Surabaya",
+      title: "Perjalanan ke Kos Baru",
+      desc: "Armada melaju aman menuju kos tujuan",
       icon: Truck,
-      eta: "Perjalanan 15 Menit",
+      eta: "15 Menit",
     },
     {
       id: "unloading",
-      title: "Bongkar Muat di Kamar Baru",
-      desc: "Helper menurunkan dan menata barang masuk ke kamar barumu",
+      title: "Bongkar di Kamar Baru",
+      desc: "Helper menurunkan dan mengantar barang masuk kamar",
       icon: MapPin,
-      eta: "Finishing 20 Menit",
+      eta: "20 Menit",
     },
     {
       id: "completed",
@@ -100,58 +100,50 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
 
   const driver = order?.driverInfo || {
     name: "Pak Joko Slamet",
-    vehicleModel: "Daihatsu Gran Max Pick Up (Putih)",
+    vehicleModel: "Daihatsu Gran Max Pick Up",
     plateNumber: "L 1832 AB",
     rating: 4.9,
     helperName: "Mas Dimas Prasetyo",
   };
 
   return (
-    <div className="min-h-screen bg-surface-50 py-8 sm:py-12 px-4 sm:px-6">
-      <div className="mx-auto max-w-2xl space-y-6">
-        {/* PRESENTATION DEMO BANNER WITH AIRY PADDING */}
-        <div className="rounded-3xl bg-gradient-to-r from-brand-800 via-brand-900 to-surface-900 p-6 sm:p-7 text-white shadow-card">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-600/50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-200 border border-brand-500/40 mb-1">
-                <Sparkles className="h-3.5 w-3.5 text-accent-300" />
-                <span>Demo Simulation Controller</span>
-              </div>
-              <h2 className="text-base sm:text-lg font-bold leading-snug">Simulasi Pelacakan Alur Pindahan</h2>
-              <p className="text-xs text-brand-100/80 leading-relaxed max-w-md">
-                Tekan tombol di samping untuk memajukan status pesanan secara instan saat sesi presentasi.
-              </p>
-            </div>
-
-            <Button
-              onClick={handleAdvanceSimulation}
-              variant="accent"
-              size="sm"
-              className="w-full sm:w-auto text-slate-950 font-bold text-xs shrink-0 py-3 px-4 shadow-sm"
-            >
-              <RefreshCw className="h-3.5 w-3.5 mr-1.5 animate-spin" />
-              Maju ke Tahap Berikutnya
-            </Button>
+    <div className="min-h-screen bg-surface-50 py-6 sm:py-10 px-4 sm:px-6">
+      <div className="mx-auto max-w-xl space-y-4">
+        {/* Compact Demo Controller Bar */}
+        <div className="rounded-2xl bg-surface-900 text-white p-3 sm:p-3.5 shadow-sm flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="text-surface-300 font-medium hidden xs:inline">Simulasi Pelacakan:</span>
+            <span className="font-bold text-accent-300">{trackingSteps[currentStepIndex]?.title}</span>
           </div>
+
+          <Button
+            onClick={handleAdvanceSimulation}
+            size="sm"
+            className="text-xs font-bold py-1.5 px-3 bg-brand-600 hover:bg-brand-700 text-white shrink-0"
+          >
+            <RefreshCw className="h-3 w-3 mr-1" />
+            <span>Maju ({currentStepIndex + 1}/6)</span>
+          </Button>
         </div>
 
-        {/* Order Identification & ETA */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 shadow-subtle flex items-center justify-between">
+        {/* Order Identification & Status */}
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-4 sm:p-5 shadow-2xs flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-surface-400 font-bold uppercase tracking-wider block">ID Pesanan:</span>
-            <span className="text-base sm:text-lg font-extrabold font-mono text-surface-900">{orderId}</span>
+            <span className="text-[10px] text-surface-400 font-medium block">ID Pesanan</span>
+            <span className="text-sm sm:text-base font-extrabold font-mono text-surface-900">{orderId}</span>
           </div>
           <div className="text-right">
-            <span className="text-[10px] text-surface-400 font-bold uppercase tracking-wider block">Status Sekarang:</span>
-            <span className="text-xs font-bold text-brand-800 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
+            <span className="text-[10px] text-surface-400 font-medium block">Status</span>
+            <span className="text-xs font-bold text-brand-800 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
               {trackingSteps[currentStepIndex]?.title || "Aktif"}
             </span>
           </div>
         </div>
 
         {/* Simulated Map Card */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white overflow-hidden shadow-subtle">
-          <div className="relative h-48 sm:h-56 bg-surface-100 flex items-center justify-center overflow-hidden border-b border-surface-200">
+        <div className="rounded-2xl border border-surface-200/80 bg-white overflow-hidden shadow-2xs">
+          <div className="relative h-44 sm:h-52 bg-surface-100 flex items-center justify-center overflow-hidden border-b border-surface-200">
             <svg className="absolute inset-0 h-full w-full opacity-60" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -169,11 +161,11 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
             </svg>
 
             {/* Origin Pin */}
-            <div className="absolute left-8 bottom-8 flex flex-col items-center">
-              <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
-                Kos Asal (Sutorejo)
+            <div className="absolute left-6 bottom-6 flex flex-col items-center">
+              <span className="bg-white text-[10px] font-bold text-surface-800 px-2 py-0.5 rounded shadow-xs border border-surface-200 mb-1">
+                Kos Asal
               </span>
-              <div className="h-4 w-4 rounded-full bg-brand-600 ring-4 ring-brand-200 animate-pulse" />
+              <div className="h-3.5 w-3.5 rounded-full bg-brand-600 ring-4 ring-brand-200" />
             </div>
 
             {/* Moving Truck Pin */}
@@ -184,130 +176,128 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                 top: `${45 - Math.sin((currentStepIndex / 5) * Math.PI) * 15}%`,
               }}
             >
-              <span className="bg-surface-900 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-md mb-1 flex items-center gap-1">
-                <Truck className="h-3 w-3 text-accent-300" />
+              <span className="bg-surface-900 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow mb-1">
                 {driver.plateNumber}
               </span>
-              <div className="h-8 w-8 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md ring-2 ring-white">
-                <Truck className="h-4 w-4" />
+              <div className="h-7 w-7 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md ring-2 ring-white">
+                <Truck className="h-3.5 w-3.5" />
               </div>
             </div>
 
             {/* Destination Pin */}
-            <div className="absolute right-8 top-6 flex flex-col items-center">
-              <span className="bg-white text-[10px] font-bold text-surface-800 px-2.5 py-0.5 rounded-lg shadow-sm border border-surface-200 mb-1">
-                Kos Baru (Dharmawangsa)
+            <div className="absolute right-6 top-6 flex flex-col items-center">
+              <span className="bg-white text-[10px] font-bold text-surface-800 px-2 py-0.5 rounded shadow-xs border border-surface-200 mb-1">
+                Kos Tujuan
               </span>
-              <div className="h-4 w-4 rounded-full bg-accent-600 ring-4 ring-accent-200" />
+              <div className="h-3.5 w-3.5 rounded-full bg-accent-600 ring-4 ring-accent-200" />
             </div>
           </div>
 
-          <div className="p-5 bg-brand-50/50 flex items-center justify-between border-b border-brand-100 text-xs sm:text-sm">
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-brand-600" />
-              <span className="font-semibold text-surface-800">
-                {trackingSteps[currentStepIndex]?.eta || "Sedang Berlangsung"}
-              </span>
+          <div className="p-3.5 sm:p-4 bg-brand-50/40 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-1.5 text-surface-800 font-semibold">
+              <Clock className="h-3.5 w-3.5 text-brand-600" />
+              <span>{trackingSteps[currentStepIndex]?.eta || "Sedang Berlangsung"}</span>
             </div>
-            <span className="text-surface-500 font-medium">Jarak Total: ± 7.5 km</span>
+            <span className="text-surface-500 font-medium">Jarak ± 7.5 km</span>
           </div>
         </div>
 
-        {/* Driver & Helper Info Card with Generous Padding */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-7 shadow-subtle space-y-4">
-          <div className="flex items-center justify-between pb-4 border-b border-surface-100">
-            <div className="flex items-center gap-3.5">
-              <div className="h-12 w-12 rounded-2xl bg-brand-50 border border-brand-200 text-brand-800 font-bold text-sm flex items-center justify-center shrink-0">
+        {/* Driver & Helper Info Card */}
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-4 sm:p-5 shadow-2xs space-y-3">
+          <div className="flex items-center justify-between pb-3 border-b border-surface-100">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-xl bg-brand-50 text-brand-800 font-bold text-xs flex items-center justify-center shrink-0">
                 JS
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <h4 className="text-sm sm:text-base font-bold text-surface-900">{driver.name}</h4>
-                  <span className="flex items-center text-[10px] font-bold text-accent-800 bg-accent-50 px-2 py-0.5 rounded border border-accent-200">
-                    <Star className="h-3 w-3 fill-accent-500 text-accent-500 mr-1" />
+                <div className="flex items-center gap-1.5">
+                  <h4 className="text-xs sm:text-sm font-bold text-surface-900">{driver.name}</h4>
+                  <span className="flex items-center text-[10px] font-bold text-accent-800 bg-accent-50 px-1.5 py-0.5 rounded">
+                    <Star className="h-2.5 w-2.5 fill-accent-500 text-accent-500 mr-0.5" />
                     {driver.rating}
                   </span>
                 </div>
-                <p className="text-xs text-surface-500 mt-0.5">{driver.vehicleModel}</p>
-                <p className="text-xs font-mono font-bold text-brand-700 mt-0.5">{driver.plateNumber}</p>
+                <p className="text-[11px] text-surface-500">{driver.vehicleModel} · {driver.plateNumber}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button
                 type="button"
-                onClick={() => alert(`Simulasi Panggilan ke ${driver.name} (0812-3456-7890)`)}
-                className="h-10 w-10 rounded-2xl bg-surface-100 text-surface-700 flex items-center justify-center hover:bg-surface-200 transition"
+                onClick={() => alert(`Simulasi Telepon ke Driver: ${driver.name}`)}
+                className="h-9 w-9 rounded-xl bg-surface-100 text-surface-700 flex items-center justify-center hover:bg-surface-200 transition"
+                title="Telepon Driver"
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-3.5 w-3.5" />
               </button>
               <button
                 type="button"
-                onClick={() => alert(`Simulasi WhatsApp ke Driver: Halo Pak Joko, kamar kos saya di lantai 2 ya.`)}
-                className="h-10 w-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 shadow-sm transition"
+                onClick={() => alert(`Simulasi WhatsApp ke Driver: Halo Pak Joko, posisi jemput di mana ya?`)}
+                className="h-9 w-9 rounded-xl bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 transition"
+                title="WhatsApp Driver"
               >
-                <MessageCircle className="h-4 w-4" />
+                <MessageCircle className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
 
-          <div className="pt-1 flex items-center justify-between text-xs sm:text-sm text-surface-600">
-            <span className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-brand-600" />
-              Tenaga Helper: <strong className="text-surface-900">{driver.helperName}</strong>
+          <div className="flex items-center justify-between text-xs text-surface-600">
+            <span className="flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5 text-brand-600" />
+              Helper: <strong className="text-surface-900">{driver.helperName}</strong>
             </span>
-            <span className="text-[11px] text-brand-800 font-bold bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200">
-              Door-to-Door Aktif
+            <span className="text-[10px] text-brand-800 font-semibold bg-brand-50 px-2 py-0.5 rounded-full">
+              Door-to-Door
             </span>
           </div>
         </div>
 
-        {/* Vertical Step Timeline with Comfortable Spacing */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-          <h3 className="text-base font-bold text-surface-950 mb-6 pb-3 border-b border-surface-100">
-            Tahapan Eksekusi Pindahan Kos
+        {/* Vertical Step Timeline */}
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-4 sm:p-5 shadow-2xs">
+          <h3 className="text-xs sm:text-sm font-bold text-surface-900 mb-4 pb-2 border-b border-surface-100">
+            Tahapan Pindahan
           </h3>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {trackingSteps.map((step, idx) => {
               const isPast = idx < currentStepIndex;
               const isCurrent = idx === currentStepIndex;
               const StepIcon = step.icon;
 
               return (
-                <div key={step.id} className="flex items-start gap-4 relative">
+                <div key={step.id} className="flex items-start gap-3 relative">
                   {idx < trackingSteps.length - 1 && (
                     <div
-                      className={`absolute left-4 top-9 -bottom-6 w-0.5 ${
+                      className={`absolute left-3.5 top-7 -bottom-4 w-0.5 ${
                         isPast ? "bg-brand-500" : "bg-surface-200"
                       }`}
                     />
                   )}
 
                   <div
-                    className={`h-9 w-9 rounded-2xl flex items-center justify-center shrink-0 z-10 transition ${
+                    className={`h-7 w-7 rounded-lg flex items-center justify-center shrink-0 z-10 text-xs transition ${
                       isPast
-                        ? "bg-brand-600 text-white shadow-xs"
+                        ? "bg-brand-600 text-white"
                         : isCurrent
-                        ? "bg-brand-700 text-white ring-4 ring-brand-100 shadow-sm"
+                        ? "bg-brand-700 text-white ring-2 ring-brand-100"
                         : "bg-surface-100 text-surface-400"
                     }`}
                   >
-                    {isPast ? <CheckCircle2 className="h-4 w-4" /> : <StepIcon className="h-4 w-4" />}
+                    {isPast ? <CheckCircle2 className="h-3.5 w-3.5" /> : <StepIcon className="h-3.5 w-3.5" />}
                   </div>
 
-                  <div className="flex-1 pb-1">
+                  <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4
-                        className={`text-xs sm:text-sm font-bold ${
+                        className={`text-xs font-bold ${
                           isCurrent ? "text-brand-800" : isPast ? "text-surface-900" : "text-surface-400"
                         }`}
                       >
                         {step.title}
                       </h4>
-                      <span className="text-[11px] text-surface-400">{step.eta}</span>
+                      <span className="text-[10px] text-surface-400">{step.eta}</span>
                     </div>
-                    <p className="text-xs text-surface-500 mt-1 leading-relaxed">{step.desc}</p>
+                    <p className="text-[11px] text-surface-500 mt-0.5">{step.desc}</p>
                   </div>
                 </div>
               );
@@ -316,26 +306,25 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* Footer Navigation */}
-        <div className="flex items-center justify-between text-xs sm:text-sm text-surface-500 pt-2">
-          <Link href="/riwayat" className="hover:text-brand-700 font-bold">
-            ← Kembali ke Riwayat Pesanan
+        <div className="flex items-center justify-between text-xs text-surface-500 pt-2 pb-6">
+          <Link href="/riwayat" className="hover:text-brand-700 font-semibold">
+            ← Riwayat Pesanan
           </Link>
-          <Link href="/" className="hover:text-brand-700 font-bold">
-            Kembali ke Beranda
+          <Link href="/" className="hover:text-brand-700 font-semibold">
+            Beranda
           </Link>
         </div>
 
-        {/* Review & Feedback Modal */}
+        {/* Review Modal */}
         <Modal
           isOpen={isReviewModalOpen}
           onClose={() => setIsReviewModalOpen(false)}
-          title="Pindahan Kos Sukses Selesai"
-          description="Bantu kami memberikan apresiasi kepada Pak Joko & Mas Dimas."
+          title="Pindahan Selesai"
+          description="Beri penilaian untuk Pak Joko & Mas Dimas."
         >
-          <div className="space-y-5">
-            <div className="text-center py-2">
-              <span className="text-xs text-surface-500 font-medium block mb-2">Beri Bintang Pengalaman Pindahan</span>
-              <div className="flex items-center justify-center gap-2">
+          <div className="space-y-4">
+            <div className="text-center py-1">
+              <div className="flex items-center justify-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
@@ -344,7 +333,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                     className="p-1 hover:scale-110 transition"
                   >
                     <Star
-                      className={`h-8 w-8 ${
+                      className={`h-7 w-7 ${
                         star <= rating ? "fill-accent-500 text-accent-500" : "text-surface-200"
                       }`}
                     />
@@ -354,17 +343,17 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-surface-800 mb-2">Komentar / Pengalaman</label>
+              <label className="block text-xs font-semibold text-surface-700 mb-1">Komentar</label>
               <textarea
                 rows={3}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 text-xs sm:text-sm focus:border-brand-600 focus:bg-white focus:outline-none transition"
               />
             </div>
 
-            <Button onClick={handleSubmitReview} size="md" className="w-full text-xs sm:text-sm py-3.5">
-              Kirim Ulasan & Selesai
+            <Button onClick={handleSubmitReview} size="md" className="w-full text-xs py-2.5">
+              Kirim Ulasan
             </Button>
           </div>
         </Modal>

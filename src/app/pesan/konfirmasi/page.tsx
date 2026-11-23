@@ -85,27 +85,24 @@ export default function OrderConfirmationPage() {
         )}
 
         {/* Page Title */}
-        <div className="text-center space-y-2">
-          <span className="text-xs font-bold text-brand-800 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">
-            Langkah Terakhir Pemesanan
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-surface-950">
+        <div className="text-center space-y-1.5">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-surface-950">
             Pembayaran QRIS Pindahan Kos
           </h1>
-          <p className="text-xs sm:text-sm text-surface-500 max-w-md mx-auto leading-relaxed">
-            Scan langsung dengan m-Banking apa saja, atau screenshot kode QRIS di bawah untuk dikirimkan ke orang tua via WhatsApp.
+          <p className="text-xs sm:text-sm text-surface-500 max-w-sm mx-auto leading-relaxed">
+            Scan langsung dengan m-Banking apa saja, atau kirimkan screenshot ke orang tua.
           </p>
         </div>
 
         {/* Order Summary Card */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 shadow-subtle space-y-4">
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-4 sm:p-5 shadow-2xs space-y-3">
           <div className="flex items-center justify-between pb-3 border-b border-surface-100">
             <div className="flex items-center gap-2">
-              <Truck className="h-5 w-5 text-brand-600" />
-              <span className="font-bold text-sm sm:text-base text-surface-900">{vehicleObj.name}</span>
+              <Truck className="h-4 w-4 text-brand-600" />
+              <span className="font-bold text-xs sm:text-sm text-surface-900">{vehicleObj.name}</span>
             </div>
-            <span className="text-xs font-bold text-brand-800 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
-              {draft.helperCount} Helper Door-to-Door
+            <span className="text-[11px] font-bold text-brand-800 bg-brand-50 px-2.5 py-0.5 rounded-full">
+              {draft.helperCount} Helper
             </span>
           </div>
 
@@ -146,7 +143,7 @@ export default function OrderConfirmationPage() {
         </div>
 
         {/* QRIS Card Component */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-card text-center space-y-5">
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs text-center space-y-4">
           {/* QRIS Header */}
           <div className="flex items-center justify-between pb-4 border-b border-surface-100">
             <div className="flex items-center gap-2">

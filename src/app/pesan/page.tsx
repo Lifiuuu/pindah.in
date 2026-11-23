@@ -19,7 +19,6 @@ import {
   Refrigerator,
   Droplets,
   Fan,
-  Box,
   Layers,
   Sparkles,
   Compass,
@@ -40,23 +39,23 @@ export default function OrderPage() {
     switch (iconName) {
       case "Bed":
       case "BedDouble":
-        return <Bed className="h-5 w-5 text-brand-700" />;
+        return <Bed className="h-4 w-4 text-brand-700" />;
       case "DoorClosed":
       case "Archive":
-        return <DoorClosed className="h-5 w-5 text-accent-700" />;
+        return <DoorClosed className="h-4 w-4 text-accent-700" />;
       case "Armchair":
-        return <Armchair className="h-5 w-5 text-surface-700" />;
+        return <Armchair className="h-4 w-4 text-surface-700" />;
       case "Refrigerator":
-        return <Refrigerator className="h-5 w-5 text-brand-600" />;
+        return <Refrigerator className="h-4 w-4 text-brand-600" />;
       case "Droplets":
-        return <Droplets className="h-5 w-5 text-brand-500" />;
+        return <Droplets className="h-4 w-4 text-brand-500" />;
       case "Fan":
-        return <Fan className="h-5 w-5 text-surface-600" />;
+        return <Fan className="h-4 w-4 text-surface-600" />;
       case "Package":
       case "Box":
-        return <Package className="h-5 w-5 text-brand-800" />;
+        return <Package className="h-4 w-4 text-brand-800" />;
       default:
-        return <Layers className="h-5 w-5 text-surface-500" />;
+        return <Layers className="h-4 w-4 text-surface-500" />;
     }
   };
 
@@ -96,9 +95,9 @@ export default function OrderPage() {
 
   return (
     <div className="min-h-screen bg-surface-50 pb-28 pt-6 sm:pt-10 px-4 sm:px-6">
-      <div className="mx-auto max-w-3xl">
-        {/* Progress Stepper Bar with Spacious Padding */}
-        <div className="rounded-3xl border border-surface-200/90 bg-white p-5 sm:p-6 mb-8 shadow-subtle">
+      <div className="mx-auto max-w-2xl">
+        {/* Sleek Progress Stepper Bar */}
+        <div className="rounded-2xl border border-surface-200/80 bg-white p-3.5 sm:p-4 mb-6 shadow-2xs">
           <div className="flex items-center justify-between">
             {steps.map((s, idx) => {
               const isCompleted = currentStep > s.num;
@@ -108,7 +107,7 @@ export default function OrderPage() {
                 <div key={s.num} className="flex-1 flex items-center">
                   <div
                     onClick={() => s.num < currentStep && setCurrentStep(s.num)}
-                    className={`flex items-center gap-2.5 cursor-pointer transition ${
+                    className={`flex items-center gap-2 cursor-pointer transition ${
                       isCurrent
                         ? "text-brand-800 font-bold"
                         : isCompleted
@@ -117,22 +116,22 @@ export default function OrderPage() {
                     }`}
                   >
                     <div
-                      className={`h-8 w-8 sm:h-9 sm:w-9 rounded-2xl flex items-center justify-center text-xs sm:text-sm font-bold transition ${
+                      className={`h-7 w-7 sm:h-8 sm:w-8 rounded-xl flex items-center justify-center text-xs font-bold transition ${
                         isCurrent
-                          ? "bg-brand-600 text-white ring-4 ring-brand-100 shadow-xs"
+                          ? "bg-brand-600 text-white ring-2 ring-brand-100"
                           : isCompleted
                           ? "bg-brand-700 text-white"
                           : "bg-surface-100 text-surface-500"
                       }`}
                     >
-                      {isCompleted ? <CheckCircle2 className="h-4 w-4" /> : s.num}
+                      {isCompleted ? <CheckCircle2 className="h-3.5 w-3.5" /> : s.num}
                     </div>
-                    <span className="hidden sm:inline text-xs sm:text-sm">{s.label}</span>
+                    <span className="hidden sm:inline text-xs">{s.label}</span>
                   </div>
 
                   {idx < steps.length - 1 && (
                     <div
-                      className={`flex-1 h-0.5 mx-2 sm:mx-4 ${
+                      className={`flex-1 h-0.5 mx-2 sm:mx-3 ${
                         currentStep > s.num ? "bg-brand-400" : "bg-surface-200"
                       }`}
                     />
@@ -141,138 +140,139 @@ export default function OrderPage() {
               );
             })}
           </div>
-          <div className="sm:hidden text-center mt-3 text-xs font-bold text-surface-700">
+          <div className="sm:hidden text-center mt-2 text-[11px] font-semibold text-surface-600">
             Langkah {currentStep} dari 4: {steps[currentStep - 1].label}
           </div>
         </div>
 
         {/* STEP 1: RUTE & JADWAL */}
         {currentStep === 1 && (
-          <div className="space-y-8">
-            {/* Lokasi Asal */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center gap-2.5 text-brand-800 font-bold text-base mb-6 pb-3 border-b border-surface-100">
-                <MapPin className="h-5 w-5 text-brand-600" />
-                <span>Titik Penjemputan (Kos Asal)</span>
-              </div>
+          <div className="space-y-5">
+            {/* Unified Route Card */}
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs space-y-5">
+              <h3 className="text-sm sm:text-base font-bold text-surface-900 pb-3 border-b border-surface-100">
+                Rute Pindahan Kos
+              </h3>
 
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Pilih Kawasan Kos Kampus</label>
-                  <select
-                    value={draft.pickupAreaId}
-                    onChange={(e) => setDraftField("pickupAreaId", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
-                  >
-                    {POPULAR_LOCATIONS.map((loc) => (
-                      <option key={loc.id} value={loc.id}>
-                        {loc.name} ({loc.district})
-                      </option>
-                    ))}
-                  </select>
+              {/* Pickup Point */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-brand-800 font-bold text-xs sm:text-sm">
+                  <div className="h-2.5 w-2.5 rounded-full bg-brand-600 ring-4 ring-brand-100 shrink-0" />
+                  <span>Lokasi Asal (Jemput)</span>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">
-                    Nama Kos, Alamat Lengkap & Nomor Kamar
-                  </label>
-                  <input
-                    type="text"
-                    value={draft.pickupAddress}
-                    onChange={(e) => setDraftField("pickupAddress", e.target.value)}
-                    placeholder="Contoh: Kost Asri Mahasiswa, Jl. Gebang Timur / Sutorejo No. 18, Kamar 204"
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="space-y-3 pl-4 sm:pl-5 border-l-2 border-dashed border-surface-200 ml-1 pb-3">
                   <div>
-                    <label className="block text-xs font-bold text-surface-800 mb-2">Lantai Kamar Kos</label>
+                    <label className="block text-[11px] font-semibold text-surface-600 mb-1">Kawasan Kampus</label>
                     <select
-                      value={draft.pickupFloor}
-                      onChange={(e) => setDraftField("pickupFloor", Number(e.target.value))}
-                      className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                      value={draft.pickupAreaId}
+                      onChange={(e) => setDraftField("pickupAreaId", e.target.value)}
+                      className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                     >
-                      <option value={1}>Lantai 1 / Dasar (Rp 0)</option>
-                      <option value={2}>Lantai 2 (+Rp 15.000)</option>
-                      <option value={3}>Lantai 3 (+Rp 25.000)</option>
-                      <option value={4}>Lantai 4 (+Rp 40.000)</option>
+                      {POPULAR_LOCATIONS.map((loc) => (
+                        <option key={loc.id} value={loc.id}>
+                          {loc.name} ({loc.district})
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-surface-800 mb-2">Akses Lift</label>
-                    <div className="flex items-center h-[50px] px-4 rounded-2xl border border-surface-200 bg-surface-50">
-                      <label className="flex items-center gap-2.5 cursor-pointer text-xs font-medium text-surface-800">
+                    <label className="block text-[11px] font-semibold text-surface-600 mb-1">
+                      Alamat & Nomor Kamar
+                    </label>
+                    <input
+                      type="text"
+                      value={draft.pickupAddress}
+                      onChange={(e) => setDraftField("pickupAddress", e.target.value)}
+                      placeholder="Contoh: Kost Asri, Jl. Gebang Timur No. 18, Kamar 204"
+                      className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-surface-600 mb-1">Lantai Kamar</label>
+                      <select
+                        value={draft.pickupFloor}
+                        onChange={(e) => setDraftField("pickupFloor", Number(e.target.value))}
+                        className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
+                      >
+                        <option value={1}>Lantai 1 / Dasar</option>
+                        <option value={2}>Lantai 2 (+15rb)</option>
+                        <option value={3}>Lantai 3 (+25rb)</option>
+                        <option value={4}>Lantai 4 (+40rb)</option>
+                      </select>
+                    </div>
+
+                    <div className="flex items-center h-[42px] px-3 rounded-xl border border-surface-200 bg-surface-50 self-end">
+                      <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-surface-800">
                         <input
                           type="checkbox"
                           checked={draft.pickupHasLift}
                           onChange={(e) => setDraftField("pickupHasLift", e.target.checked)}
                           className="h-4 w-4 rounded text-brand-600 focus:ring-brand-500"
                         />
-                        <span>Ada Lift (Bebas Biaya Tangga)</span>
+                        <span>Ada Lift</span>
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Lokasi Tujuan */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center gap-2.5 text-brand-800 font-bold text-base mb-6 pb-3 border-b border-surface-100">
-                <MapPin className="h-5 w-5 text-accent-700" />
-                <span>Titik Pengantaran (Kos Tujuan Baru)</span>
-              </div>
-
-              <div className="space-y-5">
-                <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Pilih Kawasan Kos Kampus</label>
-                  <select
-                    value={draft.deliveryAreaId}
-                    onChange={(e) => setDraftField("deliveryAreaId", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
-                  >
-                    {POPULAR_LOCATIONS.map((loc) => (
-                      <option key={loc.id} value={loc.id}>
-                        {loc.name} ({loc.district})
-                      </option>
-                    ))}
-                  </select>
+              {/* Delivery Point */}
+              <div className="space-y-3 pt-1">
+                <div className="flex items-center gap-2 text-accent-800 font-bold text-xs sm:text-sm">
+                  <div className="h-2.5 w-2.5 rounded-full bg-accent-600 ring-4 ring-accent-100 shrink-0" />
+                  <span>Lokasi Tujuan (Antar)</span>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">
-                    Nama Kos Tujuan, Alamat & Nomor Kamar
-                  </label>
-                  <input
-                    type="text"
-                    value={draft.deliveryAddress}
-                    onChange={(e) => setDraftField("deliveryAddress", e.target.value)}
-                    placeholder="Contoh: Wisma Mulyorejo Indah Blok B-4, Kamar 108"
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="space-y-3 pl-4 sm:pl-5 ml-1">
                   <div>
-                    <label className="block text-xs font-bold text-surface-800 mb-2">Lantai Kamar Tujuan</label>
+                    <label className="block text-[11px] font-semibold text-surface-600 mb-1">Kawasan Kampus</label>
                     <select
-                      value={draft.deliveryFloor}
-                      onChange={(e) => setDraftField("deliveryFloor", Number(e.target.value))}
-                      className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                      value={draft.deliveryAreaId}
+                      onChange={(e) => setDraftField("deliveryAreaId", e.target.value)}
+                      className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                     >
-                      <option value={1}>Lantai 1 / Dasar (Rp 0)</option>
-                      <option value={2}>Lantai 2 (+Rp 15.000)</option>
-                      <option value={3}>Lantai 3 (+Rp 25.000)</option>
-                      <option value={4}>Lantai 4 (+Rp 40.000)</option>
+                      {POPULAR_LOCATIONS.map((loc) => (
+                        <option key={loc.id} value={loc.id}>
+                          {loc.name} ({loc.district})
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-surface-800 mb-2">Akses Lift</label>
-                    <div className="flex items-center h-[50px] px-4 rounded-2xl border border-surface-200 bg-surface-50">
-                      <label className="flex items-center gap-2.5 cursor-pointer text-xs font-medium text-surface-800">
+                    <label className="block text-[11px] font-semibold text-surface-600 mb-1">
+                      Alamat & Nomor Kamar
+                    </label>
+                    <input
+                      type="text"
+                      value={draft.deliveryAddress}
+                      onChange={(e) => setDraftField("deliveryAddress", e.target.value)}
+                      placeholder="Contoh: Wisma Mulyorejo Indah B-4, Kamar 108"
+                      className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div>
+                      <label className="block text-[11px] font-semibold text-surface-600 mb-1">Lantai Kamar</label>
+                      <select
+                        value={draft.deliveryFloor}
+                        onChange={(e) => setDraftField("deliveryFloor", Number(e.target.value))}
+                        className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
+                      >
+                        <option value={1}>Lantai 1 / Dasar</option>
+                        <option value={2}>Lantai 2 (+15rb)</option>
+                        <option value={3}>Lantai 3 (+25rb)</option>
+                        <option value={4}>Lantai 4 (+40rb)</option>
+                      </select>
+                    </div>
+
+                    <div className="flex items-center h-[42px] px-3 rounded-xl border border-surface-200 bg-surface-50 self-end">
+                      <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-surface-800">
                         <input
                           type="checkbox"
                           checked={draft.deliveryHasLift}
@@ -287,33 +287,33 @@ export default function OrderPage() {
               </div>
             </div>
 
-            {/* Jadwal Penjemputan */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center gap-2.5 text-surface-900 font-bold text-base mb-6 pb-3 border-b border-surface-100">
-                <Calendar className="h-5 w-5 text-brand-600" />
-                <span>Jadwal Penjemputan</span>
-              </div>
+            {/* Jadwal Penjemputan Card */}
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs">
+              <h3 className="text-sm sm:text-base font-bold text-surface-900 mb-4 pb-3 border-b border-surface-100 flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-brand-600" />
+                <span>Waktu Penjemputan</span>
+              </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Tanggal Pindahan</label>
+                  <label className="block text-[11px] font-semibold text-surface-600 mb-1">Tanggal</label>
                   <input
                     type="date"
                     value={draft.scheduledDate}
                     onChange={(e) => setDraftField("scheduledDate", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                    className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Jam Standby Penjemputan</label>
+                  <label className="block text-[11px] font-semibold text-surface-600 mb-1">Jam Penjemputan</label>
                   <select
                     value={draft.scheduledTime}
                     onChange={(e) => setDraftField("scheduledTime", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                    className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 sm:p-3 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                   >
                     <option value="08:00">08:00 WIB (Pagi)</option>
-                    <option value="10:00">10:00 WIB (Paling Populer)</option>
+                    <option value="10:00">10:00 WIB (Favorit)</option>
                     <option value="13:00">13:00 WIB (Siang)</option>
                     <option value="15:30">15:30 WIB (Sore)</option>
                     <option value="19:00">19:00 WIB (Malam)</option>
@@ -326,17 +326,17 @@ export default function OrderPage() {
 
         {/* STEP 2: ARMADA & HELPER */}
         {currentStep === 2 && (
-          <div className="space-y-8">
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center justify-between mb-6 pb-3 border-b border-surface-100">
-                <div className="flex items-center gap-2.5 text-brand-800 font-bold text-base">
-                  <Truck className="h-5 w-5 text-brand-600" />
-                  <span>Pilih Tipe Kendaraan</span>
-                </div>
-                <span className="text-xs text-surface-500 font-medium">Estimasi Jarak: ± {pricing.distanceKm} km</span>
+          <div className="space-y-5">
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-surface-100">
+                <h3 className="text-sm sm:text-base font-bold text-surface-900 flex items-center gap-2">
+                  <Truck className="h-4 w-4 text-brand-600" />
+                  <span>Pilihan Armada</span>
+                </h3>
+                <span className="text-xs text-surface-500 font-medium">Jarak ± {pricing.distanceKm} km</span>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {VEHICLE_FLEET.map((v) => {
                   const isSelected = draft.vehicleId === v.id;
 
@@ -344,43 +344,40 @@ export default function OrderPage() {
                     <div
                       key={v.id}
                       onClick={() => setDraftField("vehicleId", v.id)}
-                      className={`rounded-3xl border p-5 cursor-pointer transition flex items-center justify-between gap-4 ${
+                      className={`rounded-xl border p-4 cursor-pointer transition flex items-center justify-between gap-3 ${
                         isSelected
-                          ? "border-brand-600 bg-brand-50/60 ring-2 ring-brand-500/25 shadow-subtle"
-                          : "border-surface-200 hover:bg-surface-50/70"
+                          ? "border-brand-600 bg-brand-50/50 ring-1 ring-brand-500"
+                          : "border-surface-200 hover:bg-surface-50"
                       }`}
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="h-14 w-14 rounded-2xl bg-white border border-surface-200 flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-white border border-surface-200 flex items-center justify-center shrink-0">
                           {v.id === "pikap-box" ? (
-                            <ShieldCheck className="h-7 w-7 text-brand-700" />
+                            <ShieldCheck className="h-5 w-5 text-brand-700" />
                           ) : v.id === "motor-roda3" ? (
-                            <Compass className="h-7 w-7 text-brand-700" />
+                            <Compass className="h-5 w-5 text-brand-700" />
                           ) : (
-                            <Truck className="h-7 w-7 text-brand-700" />
+                            <Truck className="h-5 w-5 text-brand-700" />
                           )}
                         </div>
                         <div>
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h4 className="text-sm sm:text-base font-bold text-surface-900">{v.name}</h4>
+                          <div className="flex items-center gap-1.5">
+                            <h4 className="text-xs sm:text-sm font-bold text-surface-900">{v.name}</h4>
                             {v.badge && (
-                              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-surface-900 text-white">
+                              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-surface-900 text-white">
                                 {v.badge}
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-surface-500 mt-0.5">{v.subtitle}</p>
-                          <p className="text-[11px] text-surface-600 mt-1 hidden sm:block leading-relaxed">
-                            {v.description}
-                          </p>
+                          <p className="text-[11px] text-surface-500">{v.subtitle}</p>
                         </div>
                       </div>
 
                       <div className="text-right shrink-0">
-                        <span className="text-base sm:text-lg font-black text-brand-800 block">
+                        <span className="text-sm sm:text-base font-bold text-brand-800 block">
                           {formatRupiah(v.basePrice + pricing.distanceKm * v.pricePerKm)}
                         </span>
-                        <span className="text-[11px] text-surface-500 font-medium">Bahan Bakar & Sopir</span>
+                        <span className="text-[10px] text-surface-400">Termasuk Supir & BBM</span>
                       </div>
                     </div>
                   );
@@ -389,53 +386,48 @@ export default function OrderPage() {
             </div>
 
             {/* Helper Configuration */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center gap-2.5 text-brand-800 font-bold text-base mb-4 pb-3 border-b border-surface-100">
-                <Users className="h-5 w-5 text-brand-600" />
-                <span>Konfigurasi Tenaga Angkut (Helper Door-to-Door)</span>
-              </div>
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs">
+              <h3 className="text-sm sm:text-base font-bold text-surface-900 mb-3 pb-3 border-b border-surface-100 flex items-center gap-2">
+                <Users className="h-4 w-4 text-brand-600" />
+                <span>Tenaga Angkut (Helper Door-to-Door)</span>
+              </h3>
 
-              <p className="text-xs sm:text-sm text-surface-600 mb-6 leading-relaxed">
-                Helper bertugas mengangkat barang berat dari dalam kamar kos asal, menata di armada pikap, hingga
-                mengantar masuk ke dalam kamar kos barumu.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div
                   onClick={() => setDraftField("helperCount", 1)}
-                  className={`rounded-2xl border p-5 cursor-pointer transition ${
+                  className={`rounded-xl border p-4 cursor-pointer transition ${
                     draft.helperCount === 1
-                      ? "border-brand-600 bg-brand-50/60 ring-2 ring-brand-500/25"
+                      ? "border-brand-600 bg-brand-50/50 ring-1 ring-brand-500"
                       : "border-surface-200 hover:bg-surface-50"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-surface-900">1 Helper Door-to-Door</span>
-                    <span className="text-xs font-bold text-brand-800 bg-brand-100 px-2.5 py-0.5 rounded-full border border-brand-200">
-                      Termasuk
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs sm:text-sm font-bold text-surface-900">1 Helper</span>
+                    <span className="text-[10px] font-bold text-brand-800 bg-brand-100 px-2 py-0.5 rounded-full">
+                      Sudah Termasuk
                     </span>
                   </div>
-                  <p className="text-xs text-surface-500 leading-relaxed">
-                    Cukup untuk pindahan standar 1 kamar kos (dibantu driver armada).
+                  <p className="text-[11px] text-surface-500">
+                    Cukup untuk pindahan 1 kamar kos normal dibantu supir armada.
                   </p>
                 </div>
 
                 <div
                   onClick={() => setDraftField("helperCount", 2)}
-                  className={`rounded-2xl border p-5 cursor-pointer transition ${
+                  className={`rounded-xl border p-4 cursor-pointer transition ${
                     draft.helperCount === 2
-                      ? "border-brand-600 bg-brand-50/60 ring-2 ring-brand-500/25"
+                      ? "border-brand-600 bg-brand-50/50 ring-1 ring-brand-500"
                       : "border-surface-200 hover:bg-surface-50"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-surface-900">2 Helper Door-to-Door</span>
-                    <span className="text-xs font-bold text-surface-800 bg-surface-100 px-2.5 py-0.5 rounded-full border border-surface-200">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs sm:text-sm font-bold text-surface-900">2 Helper</span>
+                    <span className="text-[10px] font-bold text-surface-700 bg-surface-100 px-2 py-0.5 rounded-full">
                       +Rp 35.000
                     </span>
                   </div>
-                  <p className="text-xs text-surface-500 leading-relaxed">
-                    Disarankan jika banyak lemari kayu berat atau kos berada di lantai 3–4 tanpa lift.
+                  <p className="text-[11px] text-surface-500">
+                    Disarankan untuk kos lantai 3-4 tanpa lift atau banyak perabot kayu berat.
                   </p>
                 </div>
               </div>
@@ -445,103 +437,76 @@ export default function OrderPage() {
 
         {/* STEP 3: CHECKLIST BARANG KOS */}
         {currentStep === 3 && (
-          <div className="space-y-8">
-            {/* Kapasitas Gauge */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-7 shadow-subtle">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2.5">
-                  <Package className="h-5 w-5 text-brand-600" />
-                  <span className="text-sm sm:text-base font-bold text-surface-900">Estimasi Keterisian Muatan</span>
-                </div>
-                <span className="text-xs sm:text-sm font-black text-brand-800">{capacityPercent}% Muatan</span>
+          <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs space-y-5">
+            {/* Kapasitas Header Bar */}
+            <div className="pb-4 border-b border-surface-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs sm:text-sm font-bold text-surface-900">
+                  Estimasi Muatan: {selectedVehicleObj.name}
+                </span>
+                <span className="text-xs font-bold text-brand-800">{capacityPercent}%</span>
               </div>
-
-              <div className="w-full bg-surface-100 rounded-full h-3.5 overflow-hidden">
+              <div className="w-full bg-surface-100 rounded-full h-2 overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-300 ${
-                    capacityPercent > 90
-                      ? "bg-rose-600"
-                      : capacityPercent > 60
-                      ? "bg-accent-500"
-                      : "bg-brand-600"
+                    capacityPercent > 90 ? "bg-rose-600" : "bg-brand-600"
                   }`}
                   style={{ width: `${capacityPercent}%` }}
                 />
               </div>
-
-              <div className="flex items-center justify-between mt-3 text-xs text-surface-500">
-                <span>Armada: {selectedVehicleObj.name}</span>
-                <span className="inline-flex items-center gap-1.5 font-medium">
-                  <span
-                    className={cn(
-                      "h-2 w-2 rounded-full",
-                      capacityPercent > 90 ? "bg-rose-500" : "bg-brand-600"
-                    )}
-                  />
-                  {capacityPercent > 90
-                    ? "Kapasitas muatan hampir penuh"
-                    : "Kapasitas muatan aman"}
-                </span>
-              </div>
             </div>
 
-            {/* Checklist Items */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle">
-              <h3 className="text-base sm:text-lg font-bold text-surface-900 mb-1.5">
-                Pilih Barang Kos yang Dipindahkan
-              </h3>
-              <p className="text-xs sm:text-sm text-surface-500 mb-6 leading-relaxed">
-                Tentukan jumlah barang agar tim helper membawa perlengkapan troli dan tali pengikat yang memadai.
+            <div>
+              <p className="text-xs text-surface-500 mb-4">
+                Pilih barang kos yang dipindahkan agar helper membawa troli dan tali pengikat yang pas:
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {INVENTORY_ITEMS.map((item) => {
                   const qty = draft.inventory[item.id] || 0;
 
                   return (
                     <div
                       key={item.id}
-                      className={`rounded-2xl border p-4 flex items-center justify-between gap-3 transition ${
-                        qty > 0
-                          ? "border-brand-500 bg-brand-50/40"
-                          : "border-surface-200 bg-surface-50/50"
+                      className={`rounded-xl border p-3 flex items-center justify-between gap-3 transition ${
+                        qty > 0 ? "border-brand-400 bg-brand-50/30" : "border-surface-200 bg-surface-50/40"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-white border border-surface-200 flex items-center justify-center shrink-0">
+                      <div className="flex items-center gap-2.5">
+                        <div className="h-8 w-8 rounded-lg bg-white border border-surface-200 flex items-center justify-center shrink-0">
                           {getInventoryIcon(item.iconName)}
                         </div>
                         <div>
-                          <h4 className="text-xs sm:text-sm font-bold text-surface-900">{item.name}</h4>
-                          <span className="text-[11px] text-surface-400 capitalize">{item.category}</span>
+                          <h4 className="text-xs font-bold text-surface-900">{item.name}</h4>
+                          <span className="text-[10px] text-surface-400 capitalize">{item.category}</span>
                         </div>
                       </div>
 
                       {/* Counter */}
-                      <div className="flex items-center gap-2.5">
+                      <div className="flex items-center gap-1.5 shrink-0">
                         {qty > 0 ? (
                           <>
                             <button
                               type="button"
                               onClick={() => updateInventoryItem(item.id, -1)}
-                              className="h-8 w-8 rounded-xl bg-white border border-surface-200 text-surface-700 flex items-center justify-center hover:bg-surface-100 active:scale-95 transition"
+                              className="h-7 w-7 rounded-lg border border-surface-200 bg-white text-surface-700 flex items-center justify-center hover:bg-surface-100 transition"
                             >
-                              <Minus className="h-3.5 w-3.5" />
+                              <Minus className="h-3 w-3" />
                             </button>
-                            <span className="w-5 text-center text-xs font-bold text-surface-900">{qty}</span>
+                            <span className="w-4 text-center text-xs font-bold text-surface-900">{qty}</span>
                             <button
                               type="button"
                               onClick={() => updateInventoryItem(item.id, 1)}
-                              className="h-8 w-8 rounded-xl bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 active:scale-95 transition"
+                              className="h-7 w-7 rounded-lg bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 transition"
                             >
-                              <Plus className="h-3.5 w-3.5" />
+                              <Plus className="h-3 w-3" />
                             </button>
                           </>
                         ) : (
                           <button
                             type="button"
                             onClick={() => updateInventoryItem(item.id, 1)}
-                            className="rounded-xl border border-surface-300 bg-white px-3 py-1.5 text-xs font-bold text-surface-700 hover:border-brand-600 hover:text-brand-700 transition"
+                            className="rounded-lg border border-surface-300 bg-white px-2.5 py-1 text-xs font-semibold text-surface-700 hover:border-brand-600 hover:text-brand-700 transition"
                           >
                             + Tambah
                           </button>
@@ -555,31 +520,28 @@ export default function OrderPage() {
           </div>
         )}
 
-        {/* STEP 4: REVIEW, RINCIAN HARGA & PROTEKSI */}
+        {/* STEP 4: REVIEW & RINGKASAN */}
         {currentStep === 4 && (
-          <div className="space-y-8">
-            {/* Breakdown Rincian Harga Transparan */}
-            <div className="rounded-3xl border border-brand-200 bg-white p-6 sm:p-8 shadow-subtle">
-              <div className="flex items-center gap-2.5 text-brand-800 font-bold text-base mb-6 pb-3 border-b border-surface-100">
-                <Sparkles className="h-5 w-5 text-brand-600" />
-                <span>Rincian Transparansi Tarif</span>
-              </div>
+          <div className="space-y-5">
+            {/* Invoice Breakdown */}
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs space-y-4">
+              <h3 className="text-sm sm:text-base font-bold text-surface-900 pb-3 border-b border-surface-100">
+                Rincian Tarif
+              </h3>
 
-              <div className="space-y-3.5 text-xs sm:text-sm">
+              <div className="space-y-2.5 text-xs">
                 <div className="flex justify-between text-surface-600">
-                  <span>
-                    Tarif Dasar Armada ({selectedVehicleObj.name} + BBM + Driver)
-                  </span>
+                  <span>Armada ({selectedVehicleObj.name} + BBM + Driver)</span>
                   <span className="font-semibold text-surface-900">{formatRupiah(pricing.baseVehiclePrice)}</span>
                 </div>
 
                 <div className="flex justify-between text-surface-600">
-                  <span>Biaya Jarak Tempuh (± {pricing.distanceKm} km)</span>
+                  <span>Jarak Tempuh (± {pricing.distanceKm} km)</span>
                   <span className="font-semibold text-surface-900">{formatRupiah(pricing.distanceFee)}</span>
                 </div>
 
                 <div className="flex justify-between text-surface-600">
-                  <span>Tenaga Helper ({draft.helperCount} orang door-to-door)</span>
+                  <span>Tenaga Helper ({draft.helperCount} orang)</span>
                   <span className="font-semibold text-brand-800">
                     {pricing.helperFee === 0 ? "Termasuk (Rp 0)" : formatRupiah(pricing.helperFee)}
                   </span>
@@ -587,95 +549,74 @@ export default function OrderPage() {
 
                 {pricing.floorFee > 0 && (
                   <div className="flex justify-between text-surface-600">
-                    <span>Kompensasi Tangga Lantai Bertingkat</span>
+                    <span>Biaya Tangga Bertingkat</span>
                     <span className="font-semibold text-surface-900">{formatRupiah(pricing.floorFee)}</span>
                   </div>
                 )}
 
-                <div className="flex justify-between text-surface-600">
-                  <span>Jaminan Perlindungan Barang</span>
-                  <span className="font-semibold text-surface-900">
-                    {draft.hasInsurance ? formatRupiah(pricing.protectionFee) : "Rp 0"}
-                  </span>
-                </div>
-
-                {pricing.discountPromo < 0 && (
-                  <div className="flex justify-between text-brand-900 font-medium bg-brand-50 p-3 rounded-2xl border border-brand-200">
-                    <span>Voucher Spesial Mahasiswa Baru</span>
-                    <span>{formatRupiah(pricing.discountPromo)}</span>
+                {draft.hasInsurance && (
+                  <div className="flex justify-between text-surface-600">
+                    <span>Garansi Perlindungan Barang</span>
+                    <span className="font-semibold text-surface-900">{formatRupiah(pricing.protectionFee)}</span>
                   </div>
                 )}
 
-                <div className="pt-4 border-t border-surface-200 flex justify-between items-baseline">
+                <div className="pt-3 border-t border-surface-100 flex justify-between items-baseline">
                   <div>
-                    <span className="text-sm sm:text-base font-bold text-surface-950 block">Total Tarif Pindahan</span>
-                    <span className="text-xs text-surface-400">Harga pasti, sudah termasuk supir & helper</span>
+                    <span className="text-sm font-bold text-surface-900 block">Total Tarif Pindahan</span>
+                    <span className="text-[11px] text-surface-400">Harga pasti di tempat tujuan</span>
                   </div>
-                  <span className="text-2xl sm:text-3xl font-black text-brand-700">
+                  <span className="text-xl sm:text-2xl font-black text-brand-700">
                     {formatRupiah(pricing.totalAmount)}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Proteksi & Garansi Toggle */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-7 shadow-subtle">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex gap-4">
-                  <div className="h-11 w-11 rounded-2xl bg-brand-50 border border-brand-200 text-brand-700 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-surface-900">Garansi Perlindungan Barang Kos</h4>
-                    <p className="text-xs text-surface-500 mt-1 leading-relaxed">
-                      Klaim kompensasi hingga Rp 2.000.000 jika terjadi kerusakan minor atau kendala saat proses
-                      pemindahan oleh tim helper.
-                    </p>
-                  </div>
+            {/* Proteksi Checkbox */}
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-4 sm:p-5 shadow-2xs flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="h-5 w-5 text-brand-600 shrink-0" />
+                <div>
+                  <h4 className="text-xs font-bold text-surface-900">Garansi Perlindungan Barang</h4>
+                  <p className="text-[11px] text-surface-500">Kompensasi s/d Rp 2.000.000 jika terjadi kerusakan.</p>
                 </div>
-
-                <label className="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
-                  <input
-                    type="checkbox"
-                    checked={draft.hasInsurance}
-                    onChange={(e) => setDraftField("hasInsurance", e.target.checked)}
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-surface-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-surface-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
-                </label>
               </div>
+              <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                <input
+                  type="checkbox"
+                  checked={draft.hasInsurance}
+                  onChange={(e) => setDraftField("hasInsurance", e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-10 h-5 bg-surface-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-surface-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-600"></div>
+              </label>
             </div>
 
-            {/* Catatan Khusus & Kontak */}
-            <div className="rounded-3xl border border-surface-200/90 bg-white p-6 sm:p-8 shadow-subtle space-y-5">
-              <div>
-                <label className="block text-xs font-bold text-surface-800 mb-2">Catatan Tambahan untuk Sopir / Helper</label>
-                <textarea
-                  rows={2}
-                  value={draft.driverNotes}
-                  onChange={(e) => setDraftField("driverNotes", e.target.value)}
-                  placeholder="Misal: Kos masuk gang kecil depan warkop, ada anjing penjaga, atau kasur harap ditutup plastik."
-                  className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {/* Kontak Mahasiswa */}
+            <div className="rounded-2xl border border-surface-200/80 bg-white p-5 sm:p-6 shadow-2xs space-y-3.5">
+              <h3 className="text-sm font-bold text-surface-900 pb-2 border-b border-surface-100">
+                Kontak Mahasiswa (WhatsApp)
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Nama Mahasiswa Pemesan</label>
+                  <label className="block text-[11px] font-semibold text-surface-600 mb-1">Nama Lengkap</label>
                   <input
                     type="text"
                     value={draft.customerName}
                     onChange={(e) => setDraftField("customerName", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                    placeholder="Nama mahasiswa"
+                    className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 text-xs font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-surface-800 mb-2">Nomor WhatsApp Aktif</label>
+                  <label className="block text-[11px] font-semibold text-surface-600 mb-1">Nomor WhatsApp</label>
                   <input
-                    type="text"
+                    type="tel"
                     value={draft.customerPhone}
                     onChange={(e) => setDraftField("customerPhone", e.target.value)}
-                    className="w-full rounded-2xl border border-surface-200 bg-surface-50 p-3.5 text-xs sm:text-sm font-medium focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 transition"
+                    placeholder="0812xxxxxxxx"
+                    className="w-full rounded-xl border border-surface-200 bg-surface-50 p-2.5 text-xs font-medium focus:border-brand-600 focus:bg-white focus:outline-none transition"
                   />
                 </div>
               </div>
@@ -683,27 +624,27 @@ export default function OrderPage() {
           </div>
         )}
 
-        {/* STICKY BOTTOM ACTION BAR WITH SPACIOUS PADDING */}
+        {/* STICKY BOTTOM ACTION BAR */}
         <div className="fixed bottom-0 left-0 z-30 w-full border-t border-surface-200/90 bg-white/95 backdrop-blur shadow-elevated">
-          <div className="mx-auto flex h-20 max-w-3xl items-center justify-between px-4 sm:px-8">
+          <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-4 sm:px-6">
             <button
               onClick={handleBack}
-              className="flex items-center gap-2 text-xs sm:text-sm font-bold text-surface-600 hover:text-surface-900 transition py-2"
+              className="flex items-center gap-1.5 text-xs font-bold text-surface-600 hover:text-surface-900 transition py-2"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>{currentStep === 1 ? "Batal" : "Kembali"}</span>
             </button>
 
             <div className="flex items-center gap-4">
-              <div className="text-right hidden xs:block">
-                <span className="text-[10px] text-surface-400 block uppercase font-bold tracking-wider">Total Tarif</span>
-                <span className="text-lg sm:text-xl font-black text-brand-800">
+              <div className="text-right">
+                <span className="text-[10px] text-surface-400 block font-medium">Total Tarif</span>
+                <span className="text-base sm:text-lg font-black text-brand-800">
                   {formatRupiah(pricing.totalAmount)}
                 </span>
               </div>
 
-              <Button onClick={handleNext} size="md" className="text-xs sm:text-sm px-6 py-3">
-                {currentStep === 4 ? "Lanjut Pembayaran" : "Langkah Berikutnya"}
+              <Button onClick={handleNext} size="md" className="text-xs sm:text-sm px-5 py-2.5">
+                {currentStep === 4 ? "Lanjut Pembayaran" : "Lanjut"}
               </Button>
             </div>
           </div>
